@@ -15,7 +15,6 @@ import Footer from "./Footer";
 import ClassSection from "./MyClassSection";
 import { UserContext } from "../context/UserStore";
 import MyCart from "./MyCart";
-import MypageLeturer from "./MypageLecturer"
 
 const BodyContainer = styled.div`
   width: 100vw;
@@ -90,7 +89,7 @@ const List = styled.div`
     &:nth-child(7) {
       color: #6E6E6E;
       font-size: .9em;
-      margin-bottom: 60px;
+      margin-bottom: 50px;
     }
     &:nth-child(8) {
       font-weight: bold;
@@ -103,6 +102,16 @@ const List = styled.div`
       margin-bottom: 50px;
     }
     &:nth-child(10) {
+      font-weight: bold;
+      font-size: 1.3em;
+      margin-bottom: 35px;
+    }
+    &:nth-child(11) {
+      color: #6E6E6E;
+      font-size: 0.9em;
+      margin-bottom: 60px;
+    }
+    &:nth-child(12) {
       font-weight: bold;
       font-size: 0.9em;
     }
@@ -127,7 +136,7 @@ const Section = styled.div`
 `;
 
 
-const Mypage = () => {
+const MypageLecturer = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const selected = location?.state?.selected || "메인";
@@ -152,8 +161,7 @@ const Mypage = () => {
       if(rsp.status === 200) setMemberInfo(rsp.data);
     };
     memberInfo();
-    },[userId]);
-
+},[userId]);
 
   const logout = () => {
     setUserId("");
@@ -161,10 +169,6 @@ const Mypage = () => {
   };
 
    return(
-    <>
-    {memberInfo && memberInfo.map(info => (
-    <React.Fragment key={info.id}>
-      {(info.isTeacher.trim() === 'N') ? (
     <>
     <Header/>
     <BodyContainer>
@@ -184,6 +188,8 @@ const Mypage = () => {
             <li>내 정보</li>
             <li onClick={() => click("장바구니")}>장바구니</li>
             <li onClick={() => click("결제 내역")}>결제 내역</li>
+            <li>수강 신청 관리</li>
+            <li onClick={() => click("수강생 관리")}>수강생 관리</li>
             <li>구독권</li>
             <li onClick={() => click("구독권")}>내 구독권</li>
             <li onClick={logout}>로그아웃</li>
@@ -200,17 +206,14 @@ const Mypage = () => {
          {selectedInfo === "후기" && <MyReview />}
          {selectedInfo === "장바구니" && <MyCart />}
          {selectedInfo === "결제 내역" && <MyOrder />}
+         {selectedInfo === "수강생 관리" && <MyOrder />}
          {selectedInfo === "구독권" && <MySubs />}
       </Section>
     </Container>
     </BodyContainer>
     <Footer/>
     </>
-    ) : (<MypageLeturer />)}
-    </React.Fragment>
-    ))}
-    </>
-   );
-};
+   )
+}
 
-export default Mypage;
+export default MypageLecturer;
