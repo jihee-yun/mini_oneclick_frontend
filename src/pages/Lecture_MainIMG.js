@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserStore";
 import { storage } from "../api/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
+import AxiosApi from "../api/AxiosApi";
 
 
 // 수강 설명 이미지
@@ -50,34 +51,26 @@ const ClassImg = styled.div`
 const MainIMG = () => {
   const context = useContext(UserContext);
   const { categoryNum, lectureNum } = context;
-  const [img, setImg] = useState([]);
-  const [imageUrls, setImageUrls] = useState([]);
-
-
+  const [img, setImg] = useState("");
+  
   useEffect(() => {
-    const storageRef = ref(storage, `LectureIMG`); // storage, `파일경로`
-    console.log(storageRef);
-    Promise.all([
-      getDownloadURL(storageRef, "1.jpg"), // storageRef, `파일경로`
-      getDownloadURL(storageRef, "2.jpg"), // storageRef, `파일경로`
-      getDownloadURL(storageRef, "3.png"), // storageRef, `파일경로`
-      getDownloadURL(storageRef, "4.jpg")  // storageRef, `파일경로`
-    ])
-    .then((urls) => {
-      setImageUrls(urls);
-      console.log(urls);
-    })
-    .catch((error) =>  {
-      console.error("이미지 로딩 실패!!", error);
-    })
+    const loadMainIMG = async() => {
+      const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
+      if(rsp.status === 200) {
+        setImg(rsp.data[0]);
+        console.log(img);
+      }
+    }
+    loadMainIMG();
+  },[lectureNum]);
 
-    }, [])
 
   return (
     <ClassImg >
-      {/* {urls && urls.map(imgList => {
-        <img src={}></img>
-      })} */}
+        <img src={img.mainImg1} alt="" />
+        <img src={img.mainImg2} alt="" />
+        <img src={img.mainImg3} alt="" />
+        <img src={img.mainImg4} alt="" />
     </ClassImg>
   )
 }

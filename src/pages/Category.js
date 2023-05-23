@@ -13,9 +13,9 @@ const Contain = styled.div`
   max-width: 1280px;
   /* margin: 0 auto; */
   box-sizing: border-box;
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 `;
 const Sort = styled.div`
   list-style: none;
@@ -58,13 +58,23 @@ const SectionBox1 = styled.div`
   border: 1px solid lightgray;
 `;
 
-const Thumbnail = styled.img`
+const Thumbnail = styled.div`
   /* margin: 0 auto; */
   width: 100%;
   height: 200px;
   object-fit: cover;
   overflow: hidden;
-  border: 1px solid coral;
+`;
+const Image = styled.img`
+  /* max-width: 100%; */
+  /* max-height: 0%; */
+  width: 100%;
+  height: 200px;
+  transition: transform 0.3s ease;
+
+  ${Thumbnail}:hover & {
+    transform: scale(1.2);
+  }
 `;
 const CategoryTextStyle = styled.div`
   padding: 10px 0;
@@ -99,7 +109,7 @@ const Description = styled.div`
   font-size: 0.8rem;
   font-weight: normal;
   display:flex;
-  height: 30px;
+  height: 50px;
   padding: 5px 5px;
   color: gray;
   /* border: 1px solid black; */
@@ -197,7 +207,9 @@ const event = (listData) => {
             <div key={list.num} onClick={() => {event(listData)}} >
               <SectionBox1>
                 <Heart><div><img src={heart} alt="좋아요" /></div></Heart>
-                  <Thumbnail src={listData.thumb} alt="class thumbnail" />
+                  <Thumbnail>
+                    <Image src={listData.thum} alt="class thumbnail" />
+                  </Thumbnail>
                   <CategoryTextStyle>
                     <Category>{info[categoryNum]}</Category>
                     <hr />

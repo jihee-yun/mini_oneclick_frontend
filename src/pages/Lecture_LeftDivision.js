@@ -230,7 +230,7 @@ const LeftDivision = () => {
             <Slider></Slider> {/* 슬라이더 */}
           </Introduction>
           <ClassDetail>
-            {Lecturelist.description}
+            
           </ClassDetail>
         </Contain>
       </div>
@@ -250,7 +250,7 @@ const LeftDivision = () => {
               <li><img src="https://class101.net/images/ic-instagram.png" alt="" />Instagram</li>
           </ClassCreator>
           <CreatorIntro>
-              강사 설명 들어가는 곳
+              {Lecturelist.description}
           </CreatorIntro>
         </Contain>
       </div>    
