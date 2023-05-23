@@ -109,7 +109,7 @@ const pricePay = () => {
     {list && list.map(Lecturelist => (
     <Contain key={Lecturelist.id}>
       <ClassCategory>
-        일식
+        
       </ClassCategory>
       <ClassTitle>
         <h3>{Lecturelist.name}</h3>
