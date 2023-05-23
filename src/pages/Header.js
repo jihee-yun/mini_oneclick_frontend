@@ -26,6 +26,7 @@ const HeaderBlock = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
   }
 
   .dummyBox {
@@ -48,6 +49,7 @@ const HeaderBlock = styled.header`
       margin-left: 5px;
       margin-right: 0;
       color: gray;
+      cursor: pointer;
     }
     button:hover {
       background-color: lightgrey;
@@ -57,6 +59,7 @@ const HeaderBlock = styled.header`
   .buttonImg {
     float: right;
     padding-top: 3px;
+    cursor: pointer;
     img {
       margin-left: 15px;
       margin-right: 3px;
@@ -70,6 +73,7 @@ const HeaderBlock = styled.header`
     height: 30px;
     background-color: white;
     border: none;
+    cursor: pointer;
   }
 
   .loginBox {
@@ -103,6 +107,9 @@ const NavBlock = styled.div`
     margin-left: -30px;
     transition: 1s;
     list-style: none;
+    background-color: white;
+    width: 310px;
+    height: 100px;
 
 
     li {
@@ -167,7 +174,12 @@ const Header = () => {
     console.log("setCategoryNum 에 들어오는 값" + categoryNum);
     navigate(`/category`);
     
-  }
+  };
+
+  const navigateWish = () => {
+    navigate('/myPage', { state: { selected: "위시" } })
+  };
+
   return(
     <>
     <HeaderBlock>
@@ -192,12 +204,16 @@ const Header = () => {
               <img src={mypage} alt="마이페이지" style={{width: "18px", height: "18px"}}/>
             </Link> 
             }
-            <Link to={{
-            pathname: "/mypage",
-            state: { selected: "위시" }   
-          }}>
-              <img src={wish} alt="위시리스트" style={{width: "18px", height: "18px"}}/>
-            </Link>
+            {!isLogin ? (
+              <Link to={{
+                pathname: "/login",
+                state: { selected: "위시" }   
+              }}>
+                <img src={wish} alt="위시리스트" style={{width: "18px", height: "18px"}}/>
+              </Link>
+            ) : 
+              <img src={wish} alt="위시리스트" style={{width: "18px", height: "18px"}} onClick={navigateWish}/>
+            }
           </div>
           <div className="loginBox">
             {!isLogin && (

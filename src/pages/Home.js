@@ -10,7 +10,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import slide1 from "../images/slide1.png";
 import slide2 from "../images/slide2.png";
-// import firebase from "firebase/compat";
 
 const Box = styled.h3`
   margin-left: 100px;

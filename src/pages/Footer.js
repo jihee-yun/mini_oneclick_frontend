@@ -9,7 +9,7 @@ const FooterStyled = styled.footer`
   bottom: 0;
   font-size: 15px;
   margin-bottom: 10px;
-  /* margin-left: 45px; */
+  padding-left: 55px;
   border-top: 1px solid lightgray;
 
   .pFooter {
@@ -21,12 +21,13 @@ const FooterStyled = styled.footer`
     list-style: none;
   }
 
-  button {
+  .callBtn {
     width: 90px;
     height: 30px;
     border: 1px solid lightgrey;
     margin-left: 50px;
     background-color: white;
+    cursor: pointer;
   }
 `;
 

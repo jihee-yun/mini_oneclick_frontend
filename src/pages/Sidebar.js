@@ -6,9 +6,12 @@ const SideBar = styled.div`
   width: 300px;
   display: flex;
   float: right;
-  /* margin-right: 10px; */
   flex-direction: column;
   gap: 10px;
+
+  h3 {
+    margin-left: 0;
+  }
 `;
 
 const TopBox = styled.div`
@@ -26,8 +29,11 @@ const Thum = styled.div`
 `;
 
 const InfoBox = styled.div`
+  width: 200px;
+  height: 60px;
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
 `
 
 const Category = styled.div`
