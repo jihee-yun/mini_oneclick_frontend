@@ -173,7 +173,7 @@ const LeftDivision = () => {
     setDescSel(count);
   }
 
-  const [lectureList, setLectureList] = useState("");
+  const [lectureList, setLectureList] = useState([]);
   const context = useContext(UserContext);
   const {lectureNum, categoryNum} = context;
   useEffect(() => {
@@ -182,7 +182,9 @@ const LeftDivision = () => {
       console.log("카테고리:" + categoryNum + " " + "강의번호:" + lectureNum);
       const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
       if(rsp.status === 200) {
-        setLectureList(rsp.data);
+        console.log("LectureList에서 받아옴 : " + rsp.data);
+        console.log("LectureList에서 받아옴 : " + rsp.data.lectureList);
+        setLectureList(rsp.data.lectureList);
       }
       else alert("강의 불러오기 실패");
     }

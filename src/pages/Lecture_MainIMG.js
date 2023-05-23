@@ -24,6 +24,18 @@ const ClassImg = styled.div`
   align-items: center;
   overflow: hidden;
   align-self: center;
+
+`
+
+const Asdf = styled.div`
+   height: 400px;
+  width: 96%;
+  margin: 16px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  align-self: center;
   img {
     box-sizing: border-box;
     object-fit: cover;
@@ -57,7 +69,8 @@ const MainIMG = () => {
     const loadMainIMG = async() => {
       const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
       if(rsp.status === 200) {
-        setImg(rsp.data[0]);
+        console.log("받아온 이미지리스트:" + rsp.data.imgList[0]);
+        setImg(rsp.data.imgList);
         console.log(img);
       }
     }
@@ -67,10 +80,14 @@ const MainIMG = () => {
 
   return (
     <ClassImg >
-        <img src={img.mainImg1} alt="" />
-        <img src={img.mainImg2} alt="" />
-        <img src={img.mainImg3} alt="" />
-        <img src={img.mainImg4} alt="" />
+      {img && img.map(list => (
+        <Asdf >
+          <img src={list.mainImg1} alt="" />
+          <img src={list.mainImg2} alt="" />
+          <img src={list.mainImg3} alt="" />
+          <img src={list.mainImg4} alt="" />
+        </Asdf >
+      ))}
     </ClassImg>
   )
 }

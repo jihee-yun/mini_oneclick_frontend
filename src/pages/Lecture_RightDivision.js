@@ -87,19 +87,18 @@ const PaymentStyle = styled.div`
 
 `
 
-
 const RightDivision = () => {
-  const [list, setList] = useState("");
+  const [list, setList] = useState([]);
   const context = useContext(UserContext);
   const {memberNum, lectureNum, categoryNum} = context;
 
   useEffect(() => {
-    const LectureList = async() => {
+    const lectureList = async() => {
       const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
-      if(rsp.status === 200) setList(rsp.data);
+      if(rsp.status === 200) setList(rsp.data.lectureList);
     }
-    LectureList();
-  }, []);
+    lectureList();
+  }, [categoryNum, lectureNum]);
 const pricePay = () => {
   const navigate = useNavigate;
   navigate("/subs");
