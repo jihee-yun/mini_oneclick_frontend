@@ -4,6 +4,7 @@ import AxiosApi from "../api/AxiosApi";
 import Payment from "./Payment";
 
 
+
 const Container = styled.div`
   background-color: #FEFDFD;
   display: flex;
