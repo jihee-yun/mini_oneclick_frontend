@@ -109,26 +109,38 @@ const pricePay = () => {
 }
 
 const wishChkBtn = () => {
-  if(memberNum === false) {
+  if(memberNum === "") {
     alert("로그인 후 이용하세요.");
     const navigate = useNavigate;
-    navigate("/login");
+    navigate("/");
   } else {
-  const chk = async() => {
+  const regChk = async() => {
     const rsp = await AxiosApi.getWishChk(lectureNum, memberNum);
+    console.log("getWishChk 실행");
     if(rsp.data === true) {
-      const rsp = await AxiosApi.acceptWishList(lectureNum, memberNum);
-      if(rsp.data === true) {
-        alert("찜하기 완료");
-      } else(console.log("acceptWishList 실패"));
+      console.log("getWishchk 완료");
+      asdf();
     } else {
       const rsp = await AxiosApi.delWishList(lectureNum, memberNum);
       if(rsp.data === true) {
         alert("찜하기가 취소됐습니다.");
-      } else(console.log("delWishList 실패"));
+      } else {
+        console.log("delWishList 실패");
+      }
     }
   }
-  chk();
+  
+  const asdf = async() => {
+    console.log("acceptWishList 실행");
+    const rsp = await AxiosApi.acceptWishList(lectureNum, memberNum);
+    if(rsp.data === true) {
+      alert("찜하기 완료");
+    } else {
+      console.log("acceptWishList 실패")
+    };
+  }
+
+  regChk();
   }
 }
 
