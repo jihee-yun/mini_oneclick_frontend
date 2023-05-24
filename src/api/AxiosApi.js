@@ -279,10 +279,33 @@ const AxiosApi = {
   },
   
 
-  // 
+  // 강의페이지 메인이미지 불러오기
   loadLectureImg : async(categoryNum, lectureNum) => {
-    return await axios.get(KH_DOMAIN + `/class/img?categoryNum=${categoryNum} & lectureNum=${lectureNum}`);
-  }
+    return await axios.get(KH_DOMAIN + `/class/img?categoryNum=${categoryNum}&lectureNum=${lectureNum}`);
+  },
+
+  // 강의페이지 사용자 찜목록내에 중복수강 확인
+  getWishChk: async(lectureNum, memberNum) => {
+    return await axios.get(KH_DOMAIN + `/regWishChk?lectureNum=${lectureNum}&memberNum=${memberNum}`);
+  },
+
+  // 강의페이지 사용자 찜목록에 추가시키기
+  acceptWishList: async(lectureNum, memberNum) => {
+    const data = {
+      lectureNum: lectureNum,
+      memberNum: memberNum
+    }
+    return await axios.post(KH_DOMAIN + `/acceptWishList`, data);
+  },
+
+  // 강의페이지 사용자 찜목록에 추가시키기
+  delWishList: async(lectureNum, memberNum) => {
+    const data = {
+      lectureNum: lectureNum,
+      memberNum: memberNum
+    }
+    return await axios.post(KH_DOMAIN + `/delWishList`, data);
+  },
 };
 
 

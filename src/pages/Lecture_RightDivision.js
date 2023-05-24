@@ -107,11 +107,30 @@ const pricePay = () => {
   const navigate = useNavigate;
   navigate("/subs");
 }
-useEffect(() => {
-  const wishChk = async() => {
+
+const wishChkBtn = () => {
+  if(memberNum === false) {
+    alert("로그인 후 이용하세요.");
+    const navigate = useNavigate;
+    navigate("/login");
+  } else {
+  const chk = async() => {
     const rsp = await AxiosApi.getWishChk(lectureNum, memberNum);
+    if(rsp.data === true) {
+      const rsp = await AxiosApi.acceptWishList(lectureNum, memberNum);
+      if(rsp.data === true) {
+        alert("찜하기 완료");
+      } else(console.log("acceptWishList 실패"));
+    } else {
+      const rsp = await AxiosApi.delWishList(lectureNum, memberNum);
+      if(rsp.data === true) {
+        alert("찜하기가 취소됐습니다.");
+      } else(console.log("delWishList 실패"));
+    }
   }
-})
+  chk();
+  }
+}
 
  return (
   <Container>
@@ -124,7 +143,7 @@ useEffect(() => {
         <h3>{Lecturelist.name}</h3>
       </ClassTitle>
       <ClassBtn>
-        <li onClick={wishChk}><img src={heart_icon} alt="" />찜하기</li>
+        <li onClick={wishChkBtn}><img src={heart_icon} alt="" />찜하기</li>
         <li><img src={heart_icon} alt="" />장바구니</li>
       </ClassBtn>
       <PaymentStyle>
