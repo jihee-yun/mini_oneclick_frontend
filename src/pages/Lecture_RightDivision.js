@@ -55,7 +55,7 @@ const ClassBtn = styled.div`
   display: flex;
   margin: 5px auto;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: nowrap;
   li {
     padding: 5px;
@@ -66,7 +66,7 @@ const ClassBtn = styled.div`
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    width: 28%;
+    width: 40%;
     border-radius: 5px;
     background-color: lightgray;
     img {
@@ -184,7 +184,7 @@ useEffect(() => {
       </ClassTitle>
       <ClassBtn>
         <li onClick={wishChkBtn} className={wishChk ? 'disable' : 'select'}><img src={heart_icon} alt="" />찜하기</li>
-        <li onClick={cartChkBtn}><img src={heart_icon} alt="" />장바구니</li>
+        <li onClick={cartChkBtn}><img src={heart_icon} alt="" />장바구니에 담기</li>
       </ClassBtn>
       <PaymentStyle>
         <OrdinaryPayment>{Lecturelist.price}원 결제</OrdinaryPayment> 
