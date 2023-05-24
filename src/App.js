@@ -26,6 +26,7 @@ import RefundClass from './pages/RefundClass';
 import TermsOfUse from './pages/TermsOfUse';
 import PersonalInfo from './pages/PersonalInfo';
 import Event from './pages/Event';
+import CartPayment from './pages/CartPayment';
 
 function App() {
   return (
@@ -59,7 +60,7 @@ function App() {
           <Route path="/TermsOfUse" element={<TermsOfUse />}/>
           <Route path="/PersonalInfo" element={<PersonalInfo />}/>
           <Route path="/Event" element={<Event />}/>
-
+          <Route path="/CartPayment" element={<CartPayment/>}/>
         </Routes>
       </Router>
       </UserStore>

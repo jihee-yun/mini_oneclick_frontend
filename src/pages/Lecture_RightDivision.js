@@ -88,14 +88,18 @@ const PaymentStyle = styled.div`
 `
 
 const RightDivision = () => {
-  const [list, setList] = useState([]);
   const context = useContext(UserContext);
   const {memberNum, lectureNum, categoryNum} = context;
 
+  const [list, setList] = useState([]);
+  const [wishChk, setWishChk] = useState("");
   useEffect(() => {
     const lectureList = async() => {
       const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
-      if(rsp.status === 200) setList(rsp.data.lectureList);
+      if(rsp.status === 200) {
+        setList(rsp.data.lectureList);
+        setWishChk(rsp.data.regWish);
+      }
     }
     lectureList();
   }, [categoryNum, lectureNum]);
@@ -103,6 +107,12 @@ const pricePay = () => {
   const navigate = useNavigate;
   navigate("/subs");
 }
+useEffect(() => {
+  const wishChk = async() => {
+    const rsp = await AxiosApi.getWishChk(lectureNum, memberNum);
+  }
+})
+
  return (
   <Container>
     {list && list.map(Lecturelist => (
@@ -114,8 +124,8 @@ const pricePay = () => {
         <h3>{Lecturelist.name}</h3>
       </ClassTitle>
       <ClassBtn>
-        <li><img src={heart_icon} alt="" />찜하기</li>
-        <li><img src={heart_icon} alt="" />공유</li>
+        <li onClick={wishChk}><img src={heart_icon} alt="" />찜하기</li>
+        <li><img src={heart_icon} alt="" />장바구니</li>
       </ClassBtn>
       <PaymentStyle>
         <OrdinaryPayment>{Lecturelist.price}원 결제</OrdinaryPayment> 
