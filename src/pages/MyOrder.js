@@ -4,6 +4,7 @@ import AxiosApi from "../api/AxiosApi";
 import { UserContext } from "../context/UserStore";
 import PageNation from "./PageNation";
 import MyOrderPeriod from "./MyOrderPeriod";
+import RefundClass from "./RefundClass";
 
 const Container = styled.div`
   width: 100%;
@@ -128,7 +129,7 @@ const MyOrder = () => {
        if (Array.isArray(response.data) && response.data.length > 0) {
          const payData = response.data[0];
          setPaymentNum(payData.num);
-         console.log(payData.num);
+         console.log("결제번호 : " +  payData.num);
        }
      }
    };
@@ -203,7 +204,7 @@ const MyOrder = () => {
           <td>{payment.price.toLocaleString()}원({payment.amount}인)</td>
           {isCancel(payment.created) ? 
           (<td><button className="unable">취소불가</button></td>) 
-          : <td><button>결제취소</button></td>}
+          : <td><RefundClass paymentNum={payment.num} /></td>}
         </tr>
         )))}
       </tbody>

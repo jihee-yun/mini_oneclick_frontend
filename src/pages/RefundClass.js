@@ -28,21 +28,23 @@ const RePayBtn = styled.button`margin-top: 20px;
 
     const navigate = useNavigate();
     const onClickPayBackClass = async() => {
-        console.log("환불")
+        console.log("환불 paymentNum : " + paymentNum);
+
         try {
           // const paymentNum = 1; // 환불할 paymentNUm 긁어올 예정
           const response = await AxiosApi.payBackClass(paymentNum);
           const isRefund = response.data;
           if(isRefund) {
             console.log("환불 성공");
-            navigate("/MyPage");
+            alert("환불이 완료되었습니다. 더 좋은강의로 보답하겠습니다.");
+            navigate("/home");
           } else {
             console.error("환불 오류");
-            navigate("/Mypage");
+            navigate("/home");
           }
         } catch (error) {
           console.error("환불 요청 중 오류가 발생했습니다", error);
-          navigate("/Mypage");
+          navigate("/home");
         };
     };
 
