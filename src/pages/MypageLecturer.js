@@ -10,6 +10,7 @@ import MyClass from "./MyClass";
 import MyReview from "./MyReview";
 import MySubs from "./MySubs";
 import MyOrder from "./MyOrder";
+import MyStudent from "./MyStudent";
 import Header from "./Header";
 import Footer from "./Footer";
 import ClassSection from "./MyClassSection";
@@ -206,7 +207,7 @@ const MypageLecturer = () => {
          {selectedInfo === "후기" && <MyReview />}
          {selectedInfo === "장바구니" && <MyCart />}
          {selectedInfo === "결제 내역" && <MyOrder />}
-         {selectedInfo === "수강생 관리" && <MyOrder />}
+         {selectedInfo === "수강생 관리" && <MyStudent />}
          {selectedInfo === "구독권" && <MySubs />}
       </Section>
     </Container>

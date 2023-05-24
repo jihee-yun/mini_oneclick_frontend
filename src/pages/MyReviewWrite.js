@@ -201,7 +201,7 @@ const MyReviewWrite = () => {
       </Section2>
       <MyReviewImgUpload handleFileInputChange={handleFileInputChange} attachment={attachment} onClearAttachment={onClearAttachment} />
       <Write>
-      {(attachment && inputContext) ?
+      {(inputContext) ?
       <button onClick={changeReview}>작성하기</button> :
       <button className="disable-button">작성하기</button>}
       <hr />

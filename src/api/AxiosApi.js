@@ -137,6 +137,10 @@ const AxiosApi = {
     }
     return await axios.post(KH_DOMAIN + "/delCart", del);
   },
+  // 내 결제 내역 조회
+  studentGet: async(name) => {
+    return await axios.get(KH_DOMAIN + `/myStudent?name=${name}`);
+  },
    // 검색 : 전체 강의 조회
    lectureGet : async(num) => {
     return await axios.get(KH_DOMAIN + `/lecture?num=${num}`);
