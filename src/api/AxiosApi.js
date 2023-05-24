@@ -284,9 +284,9 @@ const AxiosApi = {
     return await axios.get(KH_DOMAIN + `/class/img?categoryNum=${categoryNum}&lectureNum=${lectureNum}`);
   },
 
-  // 강의페이지 사용자 찜목록내에 중복수강 확인
+  // 강의페이지 사용자 찜목록내에 중복 확인
   getWishChk: async(lectureNum, memberNum) => {
-    return await axios.get(KH_DOMAIN + `/regWishChk?lectureNum=${lectureNum}&memberNum=${memberNum}`);
+    return await axios.get(KH_DOMAIN + `/class/regWishChk?lectureNum=${lectureNum}&memberNum=${memberNum}`);
   },
 
   // 강의페이지 사용자 찜목록에 추가시키기
@@ -295,7 +295,7 @@ const AxiosApi = {
       lectureNum: lectureNum,
       memberNum: memberNum
     }
-    return await axios.post(KH_DOMAIN + `/acceptWishList`, data);
+    return await axios.post(KH_DOMAIN + `/class/acceptWishList`, data);
   },
 
   // 강의페이지 사용자 찜목록에 추가시키기
@@ -304,7 +304,21 @@ const AxiosApi = {
       lectureNum: lectureNum,
       memberNum: memberNum
     }
-    return await axios.post(KH_DOMAIN + `/delWishList`, data);
+    return await axios.post(KH_DOMAIN + `/class/delWishList`, data);
+  },
+
+  // 강의페이지 사용자 장바구니내에 중복 확인
+  getCartChk: async(lectureNum, memberNum) => {
+    return await axios.get(KH_DOMAIN + `/class/regCartChk?lectureNum=${lectureNum}&memberNum=${memberNum}`);
+  },
+
+  // 강의페이지 사용자 장바구니에 추가시키기
+  acceptCartList: async(lectureNum, memberNum) => {
+    const data = {
+      lectureNum: lectureNum,
+      memberNum: memberNum
+    }
+    return await axios.post(KH_DOMAIN + `/class/acceptCartList`, data);
   },
 };
 

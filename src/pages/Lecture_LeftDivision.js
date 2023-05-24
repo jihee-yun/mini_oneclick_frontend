@@ -33,7 +33,7 @@ const ClassMenu = styled.div`
     opacity: 1;
     z-index: 1;
   }
-  .nosel {
+  .disabled {
     border-bottom: 3px solid white;
     opacity: .3;
     z-index: 5;
@@ -48,7 +48,7 @@ const Division1 = styled.div`
     width: 100%;
     z-index: 5;
   }
-  .descNoSel {
+  .descDisabled {
     /* width: 100%; */
     position: absolute;
     top: 20px;
@@ -217,12 +217,12 @@ const LeftDivision = () => {
       <div key={Lecturelist.num}>
         <ClassMenu>
           <div className="menu menu1">
-            <div className={`menutree ${menuSel === 1 ? `select` : 'nosel'}`} onClick={()=>{MenuIndex(1)}}>클래스 소개</div>
-            <div className={`menutree ${menuSel === 2 ? `select` : 'nosel'}`} onClick={()=>{MenuIndex(2)}}>크리에이터</div>
-            <div className={`menutree ${menuSel === 3 ? `select` : 'nosel'}`} onClick={()=>{MenuIndex(3)}}>후기</div>
+            <div className={`menutree ${menuSel === 1 ? `select` : 'disabled'}`} onClick={()=>{MenuIndex(1)}}>클래스 소개</div>
+            <div className={`menutree ${menuSel === 2 ? `select` : 'disabled'}`} onClick={()=>{MenuIndex(2)}}>크리에이터</div>
+            <div className={`menutree ${menuSel === 3 ? `select` : 'disabled'}`} onClick={()=>{MenuIndex(3)}}>후기</div>
           </div>
         </ClassMenu>
-        <div className={`${DescSel === 1 ? `descSel` : `descNoSel`}`}>
+        <div className={`${DescSel === 1 ? `descSel` : `descDisabled`}`}>
         <Contain>
           {/* 메뉴 버튼 시 z-index 변경 */}   
           <ClassDescTitle>  {/* 클래스 소개 */}
@@ -236,7 +236,7 @@ const LeftDivision = () => {
           </ClassDetail>
         </Contain>
       </div>
-      <div className={`${DescSel === 2 ? `descSel` : `descNoSel`}`}> {/* 크리에이터 소개 */}
+      <div className={`${DescSel === 2 ? `descSel` : `descDisabled`}`}> {/* 크리에이터 소개 */}
         <Contain>
           <ClassCreatorDesc>
             <div>
@@ -258,7 +258,7 @@ const LeftDivision = () => {
       </div>    
       </div>
     ))}
-      <div className={`${DescSel === 3 ? `descSel` : `descNoSel`}`}>  {/* 후기 */}
+      <div className={`${DescSel === 3 ? `descSel` : `descDisabled`}`}>  {/* 후기 */}
         <Contain>
           <ReviewWrite></ReviewWrite>
           <ReviewTitle>

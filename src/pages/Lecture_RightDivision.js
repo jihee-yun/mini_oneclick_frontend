@@ -78,11 +78,17 @@ const ClassBtn = styled.div`
     background-color: gray;
     cursor: pointer;
   }
-`
+  .select {
+    background-color: lightgray;
+  }
+  .disable {
+    background-color: darkgray;
+  }
+`;
 const Contain = styled.div`
   width: 90%;
   margin: 10px auto;
-`
+`;
 const PaymentStyle = styled.div`
 
 `
@@ -92,7 +98,7 @@ const RightDivision = () => {
   const {memberNum, lectureNum, categoryNum} = context;
 
   const [list, setList] = useState([]);
-  const [wishChk, setWishChk] = useState("");
+  const [wishChk, setWishChk] = useState(false);
   useEffect(() => {
     const lectureList = async() => {
       const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
@@ -103,6 +109,7 @@ const RightDivision = () => {
     }
     lectureList();
   }, [categoryNum, lectureNum]);
+
 const pricePay = () => {
   const navigate = useNavigate;
   navigate("/subs");
@@ -119,44 +126,65 @@ const wishChkBtn = () => {
     console.log("getWishChk 실행");
     if(rsp.data === true) {
       console.log("getWishchk 완료");
-      asdf();
+      console.log("acceptWishList 실행");
+      const rsp = await AxiosApi.acceptWishList(lectureNum, memberNum);
+      if(rsp.data === true) {
+        alert("찜하기 완료");
+        setWishChk(true);
+      } else {
+        console.log("acceptWishList 실패");
+      }
     } else {
       const rsp = await AxiosApi.delWishList(lectureNum, memberNum);
       if(rsp.data === true) {
         alert("찜하기가 취소됐습니다.");
+        setWishChk(false);
       } else {
         console.log("delWishList 실패");
       }
     }
   }
-  
-  const asdf = async() => {
-    console.log("acceptWishList 실행");
-    const rsp = await AxiosApi.acceptWishList(lectureNum, memberNum);
-    if(rsp.data === true) {
-      alert("찜하기 완료");
-    } else {
-      console.log("acceptWishList 실패")
-    };
+  regChk();
   }
+};
 
+const cartChkBtn = () => {
+  if(memberNum === "") {
+    alert("로그인 후 이용하세요.");
+    const navigate = useNavigate;
+    navigate("/");
+  } else {
+  const regChk = async() => {
+    const rsp = await AxiosApi.getCartChk(lectureNum, memberNum);
+    if(rsp.data === true) {
+      const rsp = await AxiosApi.acceptCartList(lectureNum, memberNum);
+      if(rsp.data === true) {
+        alert("장바구니에 담기 완료");
+      } else {
+        console.log("acceptWishList 실패");
+      }
+    }
+  }
   regChk();
   }
 }
+useEffect(() => {
+
+}, [wishChk]);
 
  return (
   <Container>
     {list && list.map(Lecturelist => (
     <Contain key={Lecturelist.id}>
       <ClassCategory>
-        
+        {/* 카테고리 이름 */}
       </ClassCategory>
       <ClassTitle>
         <h3>{Lecturelist.name}</h3>
       </ClassTitle>
       <ClassBtn>
-        <li onClick={wishChkBtn}><img src={heart_icon} alt="" />찜하기</li>
-        <li><img src={heart_icon} alt="" />장바구니</li>
+        <li onClick={wishChkBtn} className={wishChk ? 'disable' : 'select'}><img src={heart_icon} alt="" />찜하기</li>
+        <li onClick={cartChkBtn}><img src={heart_icon} alt="" />장바구니</li>
       </ClassBtn>
       <PaymentStyle>
         <OrdinaryPayment>{Lecturelist.price}원 결제</OrdinaryPayment> 
