@@ -1,8 +1,9 @@
 // 클래스 결제 환불 
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import AxiosApi from "../api/AxiosApi";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserStore";
 
 const Container = styled.div`
   display: flex;
@@ -23,12 +24,13 @@ const RePayBtn = styled.button`margin-top: 20px;
   
   const RefundClass = () => {
     // 해당 PaymentNum 갖고와서 쏴주면 끝.
+    const { paymentNum } = useContext(UserContext);
 
     const navigate = useNavigate();
     const onClickPayBackClass = async() => {
         console.log("환불")
         try {
-          const paymentNum = 1; // 환불할 paymentNUm 긁어올 예정
+          // const paymentNum = 1; // 환불할 paymentNUm 긁어올 예정
           const response = await AxiosApi.payBackClass(paymentNum);
           const isRefund = response.data;
           if(isRefund) {

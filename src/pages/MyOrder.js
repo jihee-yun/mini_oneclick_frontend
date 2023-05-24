@@ -115,17 +115,25 @@ const Container = styled.div`
 
 const MyOrder = () => {
   const context = useContext(UserContext);
-  const { userId } = context;
+  const { userId, setLectureNum, setPaymentNum } = context;
 
-  // 결제 정보 조회
-  const [paymentInfo, setPaymentInfo] = useState([]);
-  useEffect(() => {
-    const paymentInfo = async() => {
-      const response = await AxiosApi.paymentGet(userId);
-      if(response.status === 200) setPaymentInfo(response.data);
-    };
-    paymentInfo();
-  },[userId]);
+ // 결제 정보 조회
+ const [paymentInfo, setPaymentInfo] = useState([]);
+ useEffect(() => {
+   const paymentInfo = async () => {
+     const response = await AxiosApi.paymentGet(userId);
+     if (response.status === 200) {
+       setPaymentInfo(response.data);
+       console.log(response.data);
+       if (Array.isArray(response.data) && response.data.length > 0) {
+         const payData = response.data[0];
+         setPaymentNum(payData.num);
+         console.log(payData.num);
+       }
+     }
+   };
+   paymentInfo();
+ }, [userId]);
 
   // 기간 별 결제 내역 조회
   const [filterInfo, setFilterInfo] = useState("");
