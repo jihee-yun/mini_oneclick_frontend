@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserStore";
 import OrdinaryPayment from "./OrdinaryPayment";
 import { Navigate, useNavigate } from "react-router-dom";
+import CartBtn from "../utils/CartBtn";
 
 
 // 오른쪽 메뉴
@@ -91,6 +92,32 @@ const Contain = styled.div`
 `;
 const PaymentStyle = styled.div`
 
+`;
+const CartOption = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  .quantity-control {
+    margin: 0 5px;
+    input {
+      text-align: center;
+      width: 25px;
+      height: 20px;
+      border: none;
+      color: #636363;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    button {
+      margin: 0;
+    }
+  }
 `
 
 const RightDivision = () => {
@@ -151,8 +178,6 @@ const wishChkBtn = () => {
 const cartChkBtn = () => {
   if(memberNum === "") {
     alert("로그인 후 이용하세요.");
-    const navigate = useNavigate;
-    navigate("/");
   } else {
   const regChk = async() => {
     const rsp = await AxiosApi.getCartChk(lectureNum, memberNum);
@@ -168,6 +193,16 @@ const cartChkBtn = () => {
   regChk();
   }
 }
+
+// 카트에 담을 인원 수 설정
+const [quantity, setQuantity] = useState(1);
+const decQuantity = (count) => {
+  if(quantity > 1) setQuantity(count - 1);
+};
+const incQuantity = (count) => {
+  setQuantity(count + 1);
+};
+
 useEffect(() => {
 
 }, [wishChk]);
@@ -184,8 +219,18 @@ useEffect(() => {
       </ClassTitle>
       <ClassBtn>
         <li onClick={wishChkBtn} className={wishChk ? 'disable' : 'select'}><img src={heart_icon} alt="" />찜하기</li>
-        <li onClick={cartChkBtn}><img src={heart_icon} alt="" />장바구니에 담기</li>
+        <li onClick={cartChkBtn}><img src={heart_icon} alt="" />카트담기</li>
       </ClassBtn>
+      <CartOption>
+        <div>인원 수</div>
+        <div className="quantity-control">
+          <button onClick={() => decQuantity(quantity)}>-</button>
+          <span>
+          <input type="number" value={quantity} readOnly />
+          </span>
+          <button onClick={() => incQuantity(quantity)}>+</button>
+        </div>
+      </CartOption>
       <PaymentStyle>
         <OrdinaryPayment>{Lecturelist.price}원 결제</OrdinaryPayment> 
         <StyledButton onClick={pricePay} >구독하기</StyledButton> 
