@@ -7,7 +7,8 @@ const SideBar = styled.div`
   display: flex;
   float: right;
   flex-direction: column;
-  gap: 10px;
+  /* gap: 10px; */
+  margin-top: -30px;
 
   h3 {
     margin-left: 0;
@@ -34,7 +35,7 @@ const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 30px;
-`
+`;
 
 const Category = styled.div`
   font-size: 0.6rem;

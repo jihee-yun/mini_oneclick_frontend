@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import styled from "styled-components";
 import AxiosApi from "../api/AxiosApi";
-import wish from "../images/wish.png";
+import wish from "../images/whiteheart.png";
 import Sidebar from "./Sidebar";
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
