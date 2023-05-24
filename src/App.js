@@ -3,8 +3,8 @@ import Mypage from './pages/Mypage';
 import MyEdit from './pages/MyEdit';
 import MyClass from './pages/MyClass';
 import Login from './pages/Login';
-import MyWriteReview from './pages/MyWriteReview';
-import MyUpdateReview from './pages/MyUpdateReview';
+import MyReviewWrite from './pages/MyReviewWrite';
+import MyReviewUpdate from './pages/MyReviewUpdate';
 import ImgTest from './pages/ImgTest';
 import MyCart from './pages/MyCart';
 import Search from './pages/Search';
@@ -51,8 +51,8 @@ function App() {
           <Route path="/Class" element={<Lecture />}/>
           <Route path="/Category" element={<CategoryList />}/>
           <Route path='/AdminLogin' element={<AdminLogin />} />
-          <Route path="/MyWriteReview/:lectureId" element={<MyWriteReview />}/>
-          <Route path="/MyUpdateReview/:lectureId/:reviewNum" element={<MyUpdateReview />}/>
+          <Route path="/MyReviewWrite/:lectureId" element={<MyReviewWrite />}/>
+          <Route path="/MyReviewUpdate/:lectureId/:reviewNum" element={<MyReviewUpdate />}/>
           <Route path='/Search/:searchInput' element={<Search />}/>
           <Route path="/Home" element={<Home />}/>  
           <Route path="/" element={<Home />}/>  

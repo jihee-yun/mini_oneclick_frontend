@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserStore";
 import MypageFooter from "./MypageFooter";
 import MypageHeader from "./MypageHeader";
 import { storage } from "../api/firebase";
-import cancel from "../images/cancel.png"
+import MyReviewImgUpload from "./MyReviewImgUpload";
 
 const BodyContainer = styled.div`
   width: 100vw;
@@ -106,66 +106,7 @@ const Write = styled.div`
   }
 `;
 
-const UploadSection = styled.div`
-  width: 80%;
-  margin: 0 auto;
-  padding-top: 10px;
-
-  .upload {
-    display: none;
-  }
-`;
-
-const ImgContainer = styled.div`
-
-
-  .btn-upload, button {
-  width: 55px;
-  height: 20px;
-  background: #fff;
-  border: 1px solid lightgray;
-  border-radius: 3px;
-  font-weight: bold;
-  font-size: 0.7em;
-  color: darkgray;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-    &:hover {
-      background: lightgray;
-      color: white;
-      border: none;
-    }
-  }
-
-  #file {
-  display: none;
- }
-
-`;
-
-const Attachment = styled.div`
-  position: relative;
-  width: 100%;
-  margin-top: 5px;
-  img {
-    &:nth-child(1) {
-      
-    }
-    &:nth-child(2) {
-      position: absolute;
-      top: 0;
-      left: 90px;
-      cursor: pointer;
-    }
-  }
-
-`;
-
-
-const MyWriteReview = () => {
+const MyReviewWrite = () => {
   const navigate = useNavigate();
   const context = useContext(UserContext);
   const { userId } = context;
@@ -258,24 +199,7 @@ const MyWriteReview = () => {
         <textarea cols="30" rows="10" maxLength={MAX_LENGTH} onChange={textInput}></textarea>
         <div id="nowByte" class="count"><span>{inputCount.toLocaleString()}</span>/{MAX_LENGTH.toLocaleString()}자</div>
       </Section2>
-      <UploadSection>
-      <ImgContainer>
-      <div>
-        <label htmlFor='file'>
-          <div className='btn-upload'>사진 첨부</div>
-      </label>
-        <input type='file' id='file' accept='image/*' onChange={handleFileInputChange} />
-        <Attachment>
-        {attachment && (
-            <div>
-              <img src={attachment} width="100px" height="100px" alt="attachment"/>
-              <img src={cancel} alt="취소버튼" width="15px" height="15px" onClick={onClearAttachment} />
-            </div>
-          )}
-        </Attachment>
-      </div>
-    </ImgContainer>
-      </UploadSection>
+      <MyReviewImgUpload handleFileInputChange={handleFileInputChange} attachment={attachment} onClearAttachment={onClearAttachment} />
       <Write>
       {(attachment && inputContext) ?
       <button onClick={changeReview}>작성하기</button> :
@@ -290,4 +214,4 @@ const MyWriteReview = () => {
   )
 }
 
-export default MyWriteReview;
+export default MyReviewWrite;

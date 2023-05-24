@@ -99,7 +99,7 @@ const MyReviewSection1 = () => {
         <p>{myReview.content} {/** 100자까지..? */}
         </p>
       </div>
-      <Link to={`/MyUpdateReview/${myReview.lnum}/${myReview.num}`} style={{ textDecoration: "none", color: "inherit"}}>
+      <Link to={`/MyReviewUpdate/${myReview.lnum}/${myReview.num}`} style={{ textDecoration: "none", color: "inherit"}}>
       <button>수정하기</button>
       </Link>
     </div>

@@ -99,7 +99,7 @@ const Write = styled.div`
   }
 `;
 
-const MyUpdateReview = () => {
+const MyReviewUpdate = () => {
   const navigate = useNavigate();
   const context = useContext(UserContext);
   const { userId } = context;
@@ -177,4 +177,4 @@ const MyUpdateReview = () => {
   )
 }
 
-export default MyUpdateReview;
+export default MyReviewUpdate;

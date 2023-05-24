@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const MyOrderPeriod = ({paymentInfo, filteredInfo}) => {
+const MyOrderPeriod = ({paymentInfo, filteredInfo, pageChange}) => {
   const [period, setPeriod] = useState('1year');
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const MyOrderPeriod = ({paymentInfo, filteredInfo}) => {
       });
     }
     filteredInfo(filtered);
+    pageChange(1);
   }
 
   const periodClick = (selectPeriod) => {

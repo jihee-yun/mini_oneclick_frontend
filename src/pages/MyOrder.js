@@ -168,7 +168,7 @@ const MyOrder = () => {
     <li>결제 내역은 최근 1년을 기준으로 조회됩니다.</li>
     <li>결제 관련 상세 문의는 고객센터를 통해 빠른 처리를 도와드리겠습니다.</li>
     <li className="last-list">클래스 수강일 이후는 환불이 불가합니다.</li>
-    <MyOrderPeriod paymentInfo={paymentInfo} filteredInfo={setFilterInfo}/>
+    <MyOrderPeriod paymentInfo={paymentInfo} filteredInfo={setFilterInfo} pageChange={pageChange}/>
     <table>
       <thead>
        <tr>
