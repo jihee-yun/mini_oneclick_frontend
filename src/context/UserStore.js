@@ -9,7 +9,7 @@ const UserStore = (props) => {
   const [phone, setPhone] = useState("");
   const [mail, setMail] = useState("");
   const [price, setPrice] = useState("");
-  const [memberNum, setMemberNum] = useState("");
+  const [memberNum, setMemberNum] = useState(0);
   const [lectureNum, setLectureNum] = useState("");
   const [categoryNum, setCategoryNum] = useState("");
   const [lectureName, setLectureName] = useState("");

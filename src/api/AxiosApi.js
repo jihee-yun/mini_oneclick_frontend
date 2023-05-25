@@ -312,7 +312,7 @@ const AxiosApi = {
 
   // 강의페이지 사용자 찜목록내에 중복 확인
   getWishChk: async(lectureNum, memberNum) => {
-    return await axios.get(KH_DOMAIN + `/class/regWishChk?lectureNum=${lectureNum}&memberNum=${memberNum}`);
+    return await axios.get(KH_DOMAIN + `/regWishChk?lectureNum=${lectureNum}&memberNum=${memberNum}`);
   },
 
   // 강의페이지 사용자 찜목록에 추가시키기
@@ -321,7 +321,7 @@ const AxiosApi = {
       lectureNum: lectureNum,
       memberNum: memberNum
     }
-    return await axios.post(KH_DOMAIN + `/class/acceptWishList`, data);
+    return await axios.post(KH_DOMAIN + `/acceptWishList`, data);
   },
 
   // 강의페이지 사용자 찜목록에 추가시키기
@@ -330,12 +330,12 @@ const AxiosApi = {
       lectureNum: lectureNum,
       memberNum: memberNum
     }
-    return await axios.post(KH_DOMAIN + `/class/delWishList`, data);
+    return await axios.post(KH_DOMAIN + `/delWishList`, data);
   },
 
   // 강의페이지 사용자 장바구니내에 중복 확인
   getCartChk: async(lectureNum, memberNum) => {
-    return await axios.get(KH_DOMAIN + `/class/regCartChk?lectureNum=${lectureNum}&memberNum=${memberNum}`);
+    return await axios.get(KH_DOMAIN + `/regCartChk?lectureNum=${lectureNum}&memberNum=${memberNum}`);
   },
 
   // 강의페이지 사용자 장바구니에 추가시키기
@@ -345,7 +345,7 @@ const AxiosApi = {
       memberNum: memberNum,
       quantity: quantity
     }
-    return await axios.post(KH_DOMAIN + `/class/acceptCartList`, data);
+    return await axios.post(KH_DOMAIN + `/acceptCartList`, data);
   },
 };
 

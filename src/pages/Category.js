@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import heart from "../images/heart.png";
+import redheart from "../images/redheart.png";
 import AxiosApi from "../api/AxiosApi";
 import { useContext } from "react";
 import { UserContext } from "../context/UserStore";
@@ -56,6 +57,7 @@ const SectionBox1 = styled.div`
   height: 400px;
   margin: 5px;
   border: 1px solid lightgray;
+  z-index: 5;
 `;
 
 const Thumbnail = styled.div`
@@ -137,6 +139,8 @@ const Heart = styled.div`
   position: absolute;
   bottom: 20px;
   right: 8px;
+  z-index: 10;
+  background-color: black;
   img {
     width: 25px;
     height: 25px;
@@ -148,24 +152,30 @@ const Heart = styled.div`
 const CategoryList = () => {
  // nav 메뉴에서 강의 카테고리 클릭시 context 로 값 끌어옴
   const context = useContext(UserContext);
-  const { setLectureNum, categoryNum, lectureNum, info, setPrice, price} = context;
+  const { setLectureNum, categoryNum, memberNum, info, setPrice} = context;
   const [sortNum, setSortNum] = useState(1);
+  const [wishInfo, setWishInfo] = useState("");
+  const [wishChk, setWishChk] = useState(false);
+
+
   // axios 로 받아온 DB를 담아두기
   const [list, setList] = useState([]);
 
   useEffect(() => {
     const loadLectureList = async() => {
-      console.log("loadLectureList 실행");
       const rsp = await AxiosApi.loadList(categoryNum);
       if(rsp.status === 200) {
         const sortList = rsp.data;
         const lecInfo = await AxiosApi.loadList(categoryNum);
-        console.log("loadList 통신완료 : " + lecInfo.data);
         if(Array.isArray(lecInfo.data) && lecInfo.data.length > 0) {
           const lecture = lecInfo.data[0];
           setLectureNum(lecture.lectureNum);
-          console.log("LectureNum 출력 : " + lecture.lectureNum);
         };
+        const chk = await AxiosApi.myWishGet(memberNum);
+        if(chk.status === 200) {
+          setWishInfo(chk.data);
+          console.log(chk.data);
+        }
         console.log(sortList);
         if(sortNum === 1) {
           setList(sortList.sort((a, b) => a.likeCount - b.likeCount)); // 인기순으로 정렬
@@ -182,7 +192,37 @@ const CategoryList = () => {
 const event = (listData) => {
   setLectureNum(listData.lectureNum);
   setPrice(listData.price);
-  console.log(price);
+}
+
+
+const wishBtn = (listData) => {
+  if(memberNum === 0) {
+    alert("로그인을 먼저 해주세요.");
+  }
+  const getwishChk = async() => {
+    const rsp = await AxiosApi.getWishChk(listData.lectureNum, memberNum);
+    console.log("getWishChk 실행");
+    if(rsp.data === false) {
+      console.log("getWishchk 완료");
+      console.log("acceptWishList 실행");
+      const rsp = await AxiosApi.acceptWishList(listData.lectureNum, memberNum);
+      if(rsp.data === true) {
+        alert("찜하기 완료");
+        setWishChk(true);
+      } else {
+        console.log("acceptWishList 실패");
+      }
+    } else {
+      const rsp = await AxiosApi.delWishList(listData.lectureNum, memberNum);
+      if(rsp.data === false) {
+        alert("찜하기가 취소됐습니다.");
+        setWishChk(false);
+      } else {
+        console.log("delWishList 실패");
+      }
+    }
+  }
+  getwishChk(); 
 }
 
   return(
@@ -198,30 +238,30 @@ const event = (listData) => {
       <SectionContain>
         <Section1>
         {list && list.map(listData => (
-          <Link to="/class">
-            <div key={list.num} onClick={() => {event(listData)}} >
-              <SectionBox1>
-                <Heart><div><img src={heart} alt="좋아요" /></div></Heart>
-                  <Thumbnail>
-                    <Image src={listData.thum} alt="class thumbnail" />
-                  </Thumbnail>
-                  <CategoryTextStyle>
-                    <Category>{listData.categoryName}</Category>
-                    <hr />
-                    <Category className="line">{listData.lecturer}</Category>
-                  </CategoryTextStyle>
-                  <Title>{listData.name}</Title>
-                  <Description>{listData.intro}</Description>
-                  <PriceDate>
-                    <div className="price">{listData.price}원</div>
-                  </PriceDate>
-              </SectionBox1>
-            </div>
-          </Link>
-          ))}
+          <div className="card" key={listData.num} onClick={() => {event(listData)}} style={{textDecorationStyle: "none"}}>
+            <SectionBox1>
+            <Link to="/class">
+                <Thumbnail>
+                  <Image src={listData.thum} alt="class thumbnail" />
+                </Thumbnail>
+                <CategoryTextStyle>
+                  <Category>{listData.categoryName}</Category>
+                  <hr />
+                  <Category className="line">{listData.lecturer}</Category>
+                </CategoryTextStyle>
+                <Title>{listData.name}</Title>
+                <Description>{listData.intro}</Description>
+                <PriceDate>
+                  <div className="price">{listData.price}원</div>
+                </PriceDate>
+            </Link>
+            </SectionBox1>
+          </div>
+        ))}
         </Section1>
         </SectionContain>
     </Contain>
+    <Footer/>
     </>
   )
 }
