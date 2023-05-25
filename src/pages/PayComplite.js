@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import payCom from "../images/payCom.png";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Container = styled.div`
     background-color: #FEFDFD;
@@ -45,13 +47,17 @@ const PayComplite = () => {
 
 
     return(
-        <Container>
-            <CompliteContainer></CompliteContainer>
-                <Link to="/Mypage">
-                    <Button className="btnstyle">마이페이지</Button>
-                </Link>
+        <>
+        <Header />
+            <Container>
+             <CompliteContainer></CompliteContainer>
+                    <Link to="/Mypage">
+                        <Button className="btnstyle">마이페이지</Button>
+                    </Link>
                 <Link to="/MySubs">내 구독권</Link>
-        </Container>
+            </Container>
+        <Footer />
+        </>
     );
 };
 

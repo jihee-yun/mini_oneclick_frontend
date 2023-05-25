@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AxiosApi from "../api/AxiosApi";
 import Payment from "./Payment";
+import Header from "./Header";
+import Footer from "./Footer";
 
 
 
@@ -16,7 +18,7 @@ const Container = styled.div`
   width: 100%;
 
   /* 모바일 */
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     padding: 10px;
     max-width: 100%;
   }
@@ -100,6 +102,8 @@ const Subs = () => {
   }
 
   return(
+    <>
+    <Header />
     <Container>
       <h1 className="title">정기 구독권</h1>
       <Subscriptions>
@@ -144,6 +148,8 @@ const Subs = () => {
         </>
       )}
     </Container>
+    <Footer />
+    </>
   );
 };
 
