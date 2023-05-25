@@ -242,9 +242,8 @@ const AxiosApi = {
 
 
   // 구독권 결제
-  paymentInsert: async(lectureNum, memberNum, merchant_uid, amount, type) => {
+  paymentInsert: async( memberNum, merchant_uid, amount, type) => {
     const payment = {
-      lectureNum: lectureNum,
       memberNum: memberNum,
       created: merchant_uid,
       amount: amount,
