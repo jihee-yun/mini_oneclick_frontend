@@ -6,6 +6,7 @@ import leftarrow from "../images/left-arrow.png";
 import rightarrow from "../images/right-arrow.png";
 import x from "../images/x.png"
 import SectionBox3 from './MyClassSectionBox';
+import { Link } from "react-router-dom";
 
 const Section1 = styled.div`
   /* height: 400px; 없을 때 공백 넓이 지정하려고 만든거였음*/
@@ -31,7 +32,7 @@ const SectionBox1 = styled.div`
 
 const MyClassSection1 = () => {
   const context = useContext(UserContext);
-  const { userId } = context;
+  const { userId, setCategoryNum, setLectureNum} = context;
 
   // 클래스 정보 받아오기
   const [myClassInfo, setMyClassInfo] = useState("");
@@ -63,6 +64,12 @@ const MyClassSection1 = () => {
     }
   };
 
+  const setInfo = (cateNum, lecNum) => {
+    console.log(cateNum);
+    setCategoryNum(cateNum);
+    setLectureNum(lecNum);
+  }
+
   return(
     <>
       <p className="head">수강 중인 클래스</p>
@@ -79,9 +86,11 @@ const MyClassSection1 = () => {
             <p>수강중인 클래스가 없습니다</p>
           </div>
         ) : (myClassInfo.slice(startIndex, endIndex).map(myClass => (
-          <SectionBox1 key={myClass.num}>
+          <Link to="/class" style={{ textDecoration: "none", color: "inherit"}}>
+          <SectionBox1 key={myClass.num} onClick={() => setInfo(myClass.categoryNum, myClass.num)}>
           <SectionBox3 myClass={myClass} />
-          </SectionBox1> 
+          </SectionBox1>
+          </Link> 
         )))}
       </Section1>
     </>
