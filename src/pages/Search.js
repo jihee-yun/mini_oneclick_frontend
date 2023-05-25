@@ -7,13 +7,15 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const Container = styled.div`
-  margin: 60px;
+  /* margin: 60px; */
+  margin-top: 60px;
+  margin-left: 100px;
   display: flex;
   justify-content: left;
   flex-wrap: wrap;
   font-weight: bold;
   font-size: 1.3em;
-  gap: 80px;
+  gap: 25px;
 `;
 
 const LectureBox = styled.div`
@@ -22,7 +24,9 @@ const LectureBox = styled.div`
   flex-direction: column;
   width: 240px;
   height: 290px;
-  margin: 30px 20px 20px 80px;
+  /* margin-left: 30px; */
+  /* margin-top: 30px; */
+  margin: 25px;
 `;
 
 const Wish = styled.div`
@@ -49,7 +53,7 @@ const Category = styled.div`
   margin: 0 0;
   font-size: 0.6rem;
   font-weight: normal;
-  margin-top: 5px;
+  margin-top: 15px;
   color: gray;
 `;
 
@@ -97,7 +101,7 @@ const Search = () => {
           <LectureBox key={item.num}>
             <Wish><div><img src={wish} alt="찜" /></div></Wish>
             <Thum imageUrl={item.thum}></Thum>
-            <Category>{item.category}</Category>
+            <Category>{item.categoryName} | {item.lecturer}</Category>
             <Name>{item.name}</Name>
             <Intro>{item.intro}</Intro>
             <Price>{item.price.toLocaleString()}원</Price>

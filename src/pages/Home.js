@@ -78,7 +78,7 @@ const Category1 = styled.div`
   margin: 0 0;
   font-size: 0.6rem;
   font-weight: normal;
-  margin-top: 5px;
+  margin-top: 15px;
   color: gray;
 `;
 
@@ -160,7 +160,7 @@ const Home = () => {
             <LectureBox key={lecture.num}>
               <Wish><div><img src={wish} alt="찜" /></div></Wish>
               <Thum imageUrl={lecture.thum}></Thum>
-              <Category1>{lecture.categoryName}</Category1>
+              <Category1>{lecture.categoryName} | {lecture.lecturer}</Category1>
               <Name1>{lecture.name}</Name1>
               <Intro1>{lecture.intro}</Intro1>
               <Price1>{lecture.price.toLocaleString()}원</Price1>
@@ -173,7 +173,7 @@ const Home = () => {
             <LectureBox key={item.num}>
               <Wish><div><img src={wish} alt="찜" /></div></Wish>
               <Thum imageUrl={item.thum}></Thum>
-              <Category1>{item.categoryName}</Category1>
+              <Category1>{item.categoryName} | {item.lecturer}</Category1>
               <Name1>{item.name}</Name1>
               <Intro1>{item.intro}</Intro1>
               <Price1>{item.price.toLocaleString()}원</Price1>
