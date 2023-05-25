@@ -6,6 +6,11 @@ import down from "../images/arrow-down.png"
 import { UserContext } from "../context/UserStore";
 import AxiosApi from "../api/AxiosApi";
 
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Head = styled.div`
   margin-bottom: 50px;
   p {
@@ -15,13 +20,13 @@ const Head = styled.div`
 `;
 
 const SectionBox = styled.div`
-  height: 300px;
+  /* height: 300px; */
   display: flex;
   justify-content: left;
   flex-wrap: wrap;
   font-weight: bold;
   gap: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 `;
 
 const MoreContainer = styled.div`
@@ -37,7 +42,7 @@ const MoreContainer = styled.div`
       margin-right: 25px;
     }
 
-    img {
+    .moreImg {
       width: 15px;
       height: 15px;
       cursor: pointer;
@@ -84,6 +89,7 @@ const MyReviewSection2 = () => {
      <Head>
       <p>작성 가능한 후기</p>
     </Head>
+    <Box>
     <SectionBox>
     {myWriteInfo.length === 0 ? (
       <div className="no">
@@ -112,10 +118,11 @@ const MyReviewSection2 = () => {
      {endIndex2 < myWriteInfo.length && 
       <div className="moreBox" onClick={clickMore2}>
       <p>더보기</p>
-      <img src={down} alt="더보기"/>
+      <img className="moreImg" src={down} alt="더보기"/>
       </div>
       }
     </MoreContainer>
+    </Box>
     </>
   );
 };

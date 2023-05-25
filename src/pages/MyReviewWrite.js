@@ -149,15 +149,18 @@ const MyReviewWrite = () => {
     if(rsp.status === 200) setMemberInfo(rsp.data);
     const memNum = rsp.data.length > 0 ? rsp.data[0].num.toString() : "";
   
-    const storageRef = storage.ref();
-    const fileRef = storageRef.child(file.name);
-    await fileRef.put(file);
-    console.log('File uploaded successfully!');
-    const url = await fileRef.getDownloadURL();
-    console.log("저장경로 확인 : " + url);
-    
-    setUrl(url);
-    setAttachment("");
+    let url = null;
+    if(file){
+      const storageRef = storage.ref();
+      const fileRef = storageRef.child(file.name);
+      await fileRef.put(file);
+      console.log('File uploaded successfully!');
+      const url = await fileRef.getDownloadURL();
+      console.log("저장경로 확인 : " + url);
+      
+      setUrl(url);
+      setAttachment("");
+    }
 
     const response = await AxiosApi.writeReview(memNum, lectureId, inputContext, url);
     console.log(response.data);

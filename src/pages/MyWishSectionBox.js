@@ -17,7 +17,7 @@ const Category = styled.p`
   margin: 0 0;
   font-size: 0.6rem;
   font-weight: normal;
-  margin-top: 5px;
+  margin-top: 15px;
   color: gray;
 `;
 
@@ -59,7 +59,7 @@ const MyWishSectionBox = ({myWish, cancleWish}) => {
     <div>
       <Heart><div><img src={redheart} alt="좋아요" onClick={() => cancleWish(myWish.num, myWish.wishNum)} /></div></Heart>
       <Thumbnail imageUrl={myWish.thum}></Thumbnail>
-      <Category>{myWish.categoryName}</Category>
+      <Category>{myWish.categoryName} | {myWish.lecturer}</Category>
       <Title>{myWish.name}</Title>
       <Description>{myWish.intro}</Description>
       <Price>{myWish.price.toLocaleString()}원</Price>

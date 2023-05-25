@@ -13,6 +13,7 @@ const PageNationButton = styled.div`
   margin-top: 50px;
   
   button {
+    margin: 0;
     margin-right: 3px;
     margin-left: 3px;
   }

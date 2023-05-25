@@ -15,7 +15,7 @@ const Head = styled.div`
 `;
 
 const SectionBox = styled.div`
-  height: 300px;
+  /* height: 300px; */
   display: flex;
   justify-content: left;
   flex-wrap: wrap;
@@ -37,7 +37,7 @@ const MoreContainer = styled.div`
       margin-right: 25px;
     }
 
-    img {
+    .moreImg {
       width: 15px;
       height: 15px;
       cursor: pointer;
@@ -109,7 +109,7 @@ const MyReviewSection1 = () => {
      {endIndex < myReviewInfo.length && 
       <div className="moreBox" onClick={clickMore}>
       <p>더보기</p>
-      <img src={down} alt="더보기"/>
+      <img className="moreImg" rc={down} alt="더보기"/>
       </div>
       }
     </MoreContainer>

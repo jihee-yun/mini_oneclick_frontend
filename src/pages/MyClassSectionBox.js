@@ -17,7 +17,7 @@ const Category = styled.p`
   margin: 0 0;
   font-size: 0.6rem;
   font-weight: normal;
-  margin-top: 5px;
+  margin-top: 15px;
   color: gray;
 `;
 
@@ -61,7 +61,7 @@ const MyClassSectionBox = ({myClass}) => {
         <div><img src={heart} alt="좋아요" /></div>
       </Heart>
       <Thumbnail imageUrl={myClass.thum}></Thumbnail>
-      <Category>{myClass.categoryName}</Category>
+      <Category>{myClass.categoryName} | {myClass.lecturer}</Category>
       <Title>{myClass.name}</Title>
       <Description>{myClass.intro}</Description>
       <Price>{myClass.price.toLocaleString()}원</Price>

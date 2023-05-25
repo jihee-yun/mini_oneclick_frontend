@@ -108,13 +108,30 @@ const AxiosApi = {
     }
     return await axios.post(KH_DOMAIN + "/writeReview", write);
   },
-  // 후기 수정
-  updateReview: async(num, content) => {
+  // 후기 수정(전체 수정)
+  updateReview: async(num, content, url) => {
     const write = {
       num: num,
-      content : content
+      content : content,
+      url: url
     }
     return await axios.post(KH_DOMAIN + "/updateReview", write);
+  },
+  // 후기 수정(이미지 삭제)
+  deleteReviewImg: async(num, url) => {
+    const write = {
+      num: num,
+      url: url
+    }
+    return await axios.post(KH_DOMAIN + "/deleteReviewImg", write);
+  },
+  // 후기 수정(내용 수정)
+  updateReviewContent: async(num, content) => {
+    const write = {
+      num: num,
+      content: content
+    }
+    return await axios.post(KH_DOMAIN + "/updateReviewContent", write);
   },
   // 이미지 업로드(강의 썸네일 업데이트)
   updateImg: async(url) => {
@@ -137,6 +154,10 @@ const AxiosApi = {
       items: items
     }
     return await axios.post(KH_DOMAIN + "/delCart", del);
+  },
+   // 수강생 내역 조회
+   studentGet: async(name) => {
+    return await axios.get(KH_DOMAIN + `/myStudent?name=${name}`);
   },
    // 검색 : 전체 강의 조회
    lectureGet : async(num) => {

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserStore";
 import MypageFooter from "./MypageFooter";
 import MypageHeader from "./MypageHeader";
+import cancel from "../images/cancel.png";
 
 const BodyContainer = styled.div`
   width: 100vw;
@@ -53,7 +54,7 @@ const Title = styled.h3`
 const Section2 = styled.div`
   position: relative;
   width: 80%;
-  height: 150px;
+  /* height: 270px; */
   margin: 0 auto;
 
   textarea {
@@ -68,7 +69,29 @@ const Section2 = styled.div`
     font-size: 0.7em;
     position: absolute;
     right: 0;
-    bottom: 5px;
+    bottom: 10px;
+  }
+`;
+
+const ImgBox = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 25px;
+`;
+
+const Attachment = styled.div`
+  position: relative;
+  width: 100%;
+  margin-top: 5px;
+  img {
+    &:nth-child(1) {
+    }
+    &:nth-child(2) {
+      position: absolute;
+      top: 0;
+      left: 90px;
+      cursor: pointer;
+    }
   }
 `;
 
@@ -93,11 +116,17 @@ const Write = styled.div`
     }
   }
 
+  .disable-button {
+    background-color: darkgray;
+    cursor: none;
+  }
+
   hr {
     background-color: lightgray;
     border: .3px solid lightgray;
   }
 `;
+
 
 const MyReviewUpdate = () => {
   const navigate = useNavigate();
@@ -118,6 +147,11 @@ const MyReviewUpdate = () => {
   // 작성된 리뷰 정보 조회
   const [reviewInfo, setReviewInfo] = useState("");
 
+  // 후기 사진
+  const [attachment, setAttachment] =useState("");
+  const [deleteImg, setDeleteImg] = useState(false);
+  const [url, setUrl] = useState("");
+
   useEffect(() => {
     const lectureInfo = async() => {
       const response = await AxiosApi.classDetailGet(lectureId);
@@ -130,6 +164,11 @@ const MyReviewUpdate = () => {
     const reviewInfo = async() => {
     const rsp = await AxiosApi.myReviewGet(userId);
     if(rsp.status === 200) setReviewInfo(rsp.data);
+    console.log(rsp.data);
+    const filteredReviews = rsp.data.filter(review => review.img !== null && review.num === Number(reviewNum));
+      if (filteredReviews.length > 0) {
+        setAttachment(filteredReviews[0].img);
+      }
     }
     reviewInfo();
   },[userId])
@@ -143,10 +182,24 @@ const MyReviewUpdate = () => {
   };
 
   const changeReview = async() => {
-    const response = await AxiosApi.updateReview(reviewNum, inputContext);
-    console.log(response.data);
+    if(deleteImg === true) {
+      const response = await AxiosApi.deleteReviewImg(reviewNum, url);
+      console.log(response.data);
+    } else if(inputContext){
+      const response = await AxiosApi.updateReviewContent(reviewNum, inputContext);
+      console.log(response.data);
+    } else {
+      const response = await AxiosApi.updateReview(reviewNum, inputContext, url);
+      console.log(response.data);
+    }
     navigate('/MyPage', { state: { selected: "후기" } });
   };
+
+  const clear = () => {
+    setAttachment(null);
+    setDeleteImg(true);
+    setUrl(null);
+  }
 
   return( 
     <>
@@ -166,8 +219,20 @@ const MyReviewUpdate = () => {
         <div id="nowByte" className="count"><span>{inputCount.toLocaleString()}</span>/{MAX_LENGTH.toLocaleString()}자</div>
       </Section2>
       ))}
+     <ImgBox>
+     <Attachment>
+            {attachment && (
+              <div>
+                <img src={attachment} width="100px" height="100px" alt="attachment" />
+                <img src={cancel} alt="취소버튼" width="15px" height="15px" onClick={clear} />
+              </div>
+            )}
+      </Attachment>
+      </ImgBox> 
       <Write>
-      <button onClick={changeReview}>수정하기</button>
+      {(inputContext || deleteImg) ?
+      <button onClick={changeReview}>수정하기</button> :
+      <button className="disable-button">수정하기</button>}
       <hr />
       </Write>
       <MypageFooter />
