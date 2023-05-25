@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import AxiosApi from "../api/AxiosApi";
 import { UserContext } from "../context/UserStore";
+import CartPayment from "./CartPayment";
 
 const Container = styled.div`
   width: 100%;
@@ -105,18 +106,31 @@ const Container = styled.div`
     justify-content: center;
   
     button {
-      margin: 100px 0 0 0;
+      margin: 10px 0 0 0;
       font-weight: bold;
       color: white;
-      background-color: #565656;
+      background-color: #FC7373;
       border: none;
       width: 250px;
       height: 30px;
 
       &:hover {
-        background-color: #FC7373;
+        background-color: lightgray;
         color: white;
       }
+    }
+    button.noneBtn {
+    pointer-events: none;
+    background-color: #D8D8D8;
+    }
+  }
+
+  .totalPrice {
+    width: 100%;
+    margin-top: 100px;
+    p {
+      font-size: 1.1em;
+      text-align: center;
     }
   }
 
@@ -171,7 +185,7 @@ const MyCart = () => {
     let priceSum = 0;
     cartInfo.forEach((cart) => {
       if (checkItems.includes(cart.cartNum)) {
-        priceSum += cart.price;
+        priceSum += cart.totalPrice;
       }
     });
     setTotalPrice(priceSum);
@@ -288,9 +302,11 @@ const MyCart = () => {
         </tbody>
       </table>
       <button onClick={selectDelete}>선택 삭제</button>
+      <div className="totalPrice">
+        <p>총 {totalPrice.toLocaleString()}원</p>
+      </div>
       <div className="pay-button">
-        {totalPrice ? (<button>총 {totalPrice.toLocaleString()}원 결제하기</button>) :
-        <button>결제하기</button>}
+        {totalPrice ? <CartPayment /> : <button className="noneBtn">결제하기</button>}
       </div>
     </Container>
     </>

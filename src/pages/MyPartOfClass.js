@@ -4,6 +4,7 @@ import x from "../images/x.png"
 import AxiosApi from "../api/AxiosApi";
 import { UserContext } from "../context/UserStore";
 import SectionBox2 from './MyClassSectionBox';
+import { Link } from "react-router-dom";
 
 
 const Section1 = styled.div`
@@ -41,7 +42,7 @@ const SectionBox1 = styled.div`
 const MyPartOfClass = () => {
   
   const context = useContext(UserContext);
-  const { userId } = context;
+  const { userId, setCategoryNum, setLectureNum } = context;
   
   // 수강 중인 클래스 조회
   const [myClassInfo, setMyClassInfo] = useState("");
@@ -54,6 +55,12 @@ const MyPartOfClass = () => {
     myClassInfo();
   },[userId]);
 
+  const setInfo = (cateNum, lecNum) => {
+    console.log(cateNum);
+    setCategoryNum(cateNum);
+    setLectureNum(lecNum);
+  }
+
    return(
    <>
    <Section1>     
@@ -63,9 +70,11 @@ const MyPartOfClass = () => {
         <p>수강중인 클래스가 없습니다</p>
       </div>
       ) : (myClassInfo.map(myClass => (
-        <SectionBox1 key={myClass.num}>
+        <Link to="/class" style={{ textDecoration: "none", color: "inherit"}}>
+        <SectionBox1 key={myClass.num} onClick={() => setInfo(myClass.categoryNum, myClass.num)}>
         <SectionBox2  myClass={myClass} />
         </SectionBox1>
+        </Link>
       )))}    
   </Section1>
    </>

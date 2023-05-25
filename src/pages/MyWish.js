@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import AxiosApi from "../api/AxiosApi";
 import { UserContext } from "../context/UserStore";
@@ -50,7 +51,7 @@ const SectionBox1 = styled.div`
 
 const MyWish = () => {
   const context = useContext(UserContext);
-  const { userId } = context;
+  const { userId, setCategoryNum, setLectureNum } = context;
 
   const [myWishInfo, setMyWishInfo] = useState("");
 
@@ -73,6 +74,12 @@ const MyWish = () => {
     }
   };
 
+  const setInfo = (cateNum, lecNum) => {
+    console.log(cateNum);
+    setCategoryNum(cateNum);
+    setLectureNum(lecNum);
+  }
+
   return(
     <>
     <Container>
@@ -84,10 +91,13 @@ const MyWish = () => {
           <p>위시리스트 목록이 없습니다</p>
         </div>
         ) : (myWishInfo.map(myWish => (
-          <SectionBox1 key={myWish.wishNum}>
+          <Link to="/class" style={{ textDecoration: "none", color: "inherit"}}>
+          <SectionBox1 key={myWish.wishNum} onClick={()=> setInfo(myWish.categoryNum, myWish.num)}>
           <MyWishSectionBox myWish={myWish} cancleWish={cancleWish} />
           </SectionBox1>
+          </Link>
           )))}    
+        
       </Section1>
     </Container>
     </>

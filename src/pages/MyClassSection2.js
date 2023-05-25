@@ -6,6 +6,7 @@ import leftarrow from "../images/left-arrow.png";
 import rightarrow from "../images/right-arrow.png";
 import x from "../images/x.png"
 import WishBox from './MyWishSectionBox';
+import { Link } from "react-router-dom";
 
 const Section2 = styled.div`
   /* height: 400px; */
@@ -30,7 +31,7 @@ const SectionBox2 = styled.div`
 
 const MyClassSection2 = () => {
   const context = useContext(UserContext);
-  const { userId } = context;
+  const { userId, setCategoryNum, setLectureNum } = context;
 
   const [myWishInfo, setMyWishInfo] = useState("");
   
@@ -69,6 +70,13 @@ const MyClassSection2 = () => {
     }
   };
 
+  const setInfo = (cateNum, lecNum) => {
+    console.log(cateNum);
+    console.log(lecNum);
+    setCategoryNum(cateNum);
+    setLectureNum(lecNum);
+  }
+
   return(
     <>
       <p className="head">위시리스트</p>
@@ -85,9 +93,11 @@ const MyClassSection2 = () => {
             <p>위시리스트 목록이 없습니다</p>
           </div>
         ) : (myWishInfo.slice(startIndex2, endIndex2).map(myWish => (
-          <SectionBox2 key={myWish.wishNum} >
+          <Link to="/class" style={{ textDecoration: "none", color: "inherit"}}>
+          <SectionBox2 key={myWish.wishNum} onClick={()=> setInfo(myWish.categoryNum, myWish.num)} >
             <WishBox myWish={myWish} cancleWish={cancleWish}/>
           </SectionBox2>
+          </Link>
         )))}  
       </Section2>
     </>
