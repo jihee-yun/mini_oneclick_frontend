@@ -145,11 +145,14 @@ const PaymentStyle = styled.div`
 
 const RightDivision = () => {
   const context = useContext(UserContext);
-  const {memberNum, lectureNum, categoryNum, info, price} = context;
+  const {memberNum, lectureNum, categoryNum, info, price, setMemberNum} = context;
 
   const [list, setList] = useState([]);
   const [wishChk, setWishChk] = useState(false);
   useEffect(() => {
+    if(memberNum === "") {
+      setMemberNum(0);
+    }
     const lectureList = async() => {
       const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
       const loadWishChk = await AxiosApi.getWishChk(lectureNum, memberNum);
@@ -167,10 +170,10 @@ const pricePay = () => {
 }
 
 const wishChkBtn = () => {
-  if(memberNum === "") {
+  if(memberNum === 0) {
     alert("로그인 후 이용하세요.");
-    const navigate = useNavigate;
-    navigate("/");
+    // const navigate = useNavigate;
+    // navigate("/");
   } else {
   const regChk = async() => {
     const rsp = await AxiosApi.getWishChk(lectureNum, memberNum);
@@ -200,7 +203,7 @@ const wishChkBtn = () => {
 };
 
 const cartChkBtn = () => {
-  if(memberNum === "") {
+  if(memberNum === 0) {
     alert("로그인 후 이용하세요.");
   } else {
   const regChk = async() => {
