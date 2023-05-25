@@ -13,6 +13,13 @@ const StyledButton = styled.button`
   :hover {
     cursor: pointer;
   }
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  img {
+    width:20px;
+    margin: 3px;
+  }
 `
 
 // 구독 결제 이동

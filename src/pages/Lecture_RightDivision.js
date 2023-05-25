@@ -55,6 +55,8 @@ const ClassTitle = styled.div`
 `
 const ClassBtn = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   margin: 5px auto;
   width: 100%;
   justify-content: space-around;
@@ -80,28 +82,40 @@ const ClassBtn = styled.div`
     background-color: gray;
     cursor: pointer;
   }
+  // 찜 버튼 활성화 시
   .select {
     background-color: lightgray;
   }
+  // 찜 버튼 비활성화 시
   .disable {
     background-color: darkgray;
   }
-`;
-const Contain = styled.div`
-  width: 90%;
-  margin: 10px auto;
-`;
-const PaymentStyle = styled.div`
+  .cartBtn {
+    display: flex;
+    width: 100%;
+    /* justify-content: space-evenly; */
+    border: 1px solid black;
+    li {
+      width: 40%;
+    }
 
-`;
-const CartOption = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: 5px 0;
+  .quantity-desc {
+    font-size: 12px;
+    font-weight: bold;
+    width: 40px;
+    border: 1px solid black;
+  }
   .quantity-control {
     margin: 0 5px;
+    border: 1px solid black;
+    display:flex;
+    flex-wrap: nowrap;
+    height: 25px;
     input {
       text-align: center;
       width: 25px;
@@ -119,7 +133,15 @@ const CartOption = styled.div`
       margin: 0;
     }
   }
-`
+  }
+`;
+const Contain = styled.div`
+  width: 90%;
+  margin: 10px auto;
+`;
+const PaymentStyle = styled.div`
+
+`;
 
 const RightDivision = () => {
   const context = useContext(UserContext);
@@ -218,11 +240,8 @@ const incQuantity = (count) => {
       </ClassTitle>
       <ClassBtn>
         <li onClick={wishChkBtn} className={wishChk ? 'disable' : 'select'}><img src={heart_icon} alt="" />찜하기</li>
-        <li onClick={cartChkBtn}><img src={heart_icon} alt="" />카트담기</li>
-      </ClassBtn>
-      <CartOption>
-        <div>
-          <div>인원 수</div>
+        <div className="cartBtn">
+          <div className="quantity-desc">인원</div>
           <div className="quantity-control">
             <button onClick={() => decQuantity(quantity)}>-</button>
             <span>
@@ -230,12 +249,12 @@ const incQuantity = (count) => {
             </span>
             <button onClick={() => incQuantity(quantity)}>+</button>
           </div>
-          </div>
-        <div></div>
-      </CartOption>
+          <li onClick={cartChkBtn}><img src={heart_icon} alt="" />카트담기</li>
+        </div>
+      </ClassBtn>
       <PaymentStyle>
-        <OrdinaryPayment>{Lecturelist.price}원 결제</OrdinaryPayment> 
         <StyledButton onClick={pricePay} >구독하기</StyledButton> 
+        <OrdinaryPayment>{Lecturelist.price}원 결제</OrdinaryPayment> 
       </PaymentStyle>
       <ClassTitle >
         <h2>강의 장소</h2>
