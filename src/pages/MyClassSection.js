@@ -70,7 +70,7 @@ const MyClassSection = ({onSelect}) => {
     <>
     <Container>
       <div>
-        <MyClassSection1 />
+        <MyClassSection1 onSelect={onSelect}/>
         <MyClassSection2 onSelect={onSelect}/>
       </div>
     </Container>

@@ -30,7 +30,7 @@ const SectionBox1 = styled.div`
   margin-bottom: 30px;
 `;
 
-const MyClassSection1 = () => {
+const MyClassSection1 = ({onSelect}) => {
   const context = useContext(UserContext);
   const { userId, setCategoryNum, setLectureNum} = context;
 
@@ -70,9 +70,13 @@ const MyClassSection1 = () => {
     setLectureNum(lecNum);
   }
 
+  const movePage = () => {
+    onSelect("수강");
+  }
+
   return(
     <>
-      <p className="head">수강 중인 클래스</p>
+      <p className="head">수강 중인 클래스&nbsp;&nbsp;&nbsp;<span onClick={movePage}>전체보기</span></p>
       {myClassInfo.length > 3 && (
       <div className="arrow">
         <img src={leftarrow} alt="이전" onClick={prevClick}/>
