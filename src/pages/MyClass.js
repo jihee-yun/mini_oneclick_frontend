@@ -3,6 +3,8 @@ import styled from "styled-components";
 import PartOfClass from "./MyPartOfClass";
 
 const Container = styled.div`
+
+
   font-weight: bold;
   font-size: 1.3em;
   

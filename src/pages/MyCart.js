@@ -209,9 +209,9 @@ const MyCart = () => {
       return prevCartInfo.map((cart) => {
         if (cart.cartNum === cartNum && cart.quantity > 1) {
           const updatedQuantity = cart.quantity - 1;
-          const unitPrice = cart.price / cart.quantity;
+          const unitPrice = cart.totalPrice / cart.quantity;
           const updatedPrice = unitPrice * updatedQuantity;
-        return { ...cart, quantity: updatedQuantity, price: updatedPrice };
+        return { ...cart, quantity: updatedQuantity, totalPrice: updatedPrice};
         }
         return cart;
       });
@@ -223,9 +223,9 @@ const MyCart = () => {
       return prevCartInfo.map((cart) => {
         if (cart.cartNum === cartNum) {
           const updatedQuantity = cart.quantity + 1;
-          const unitPrice = cart.price / cart.quantity;
+          const unitPrice = cart.totalPrice / cart.quantity;
           const updatedPrice = unitPrice * updatedQuantity;
-          return { ...cart, quantity: updatedQuantity, price: updatedPrice };
+          return { ...cart, quantity: updatedQuantity, totalPrice: updatedPrice};
         }
         return cart;
       });
@@ -273,7 +273,7 @@ const MyCart = () => {
               </div>
             </td>
             <td>{cart.startDate}</td>
-            <td>{cart.price.toLocaleString()}원</td>
+            <td>{cart.totalPrice.toLocaleString()}원</td>
             <td>
               <div className="quantity-control">
                 <button onClick={() => decQuantity(cart.cartNum)}>-</button>

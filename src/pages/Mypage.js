@@ -18,7 +18,8 @@ import MyCart from "./MyCart";
 import MypageLeturer from "./MypageLecturer"
 
 const BodyContainer = styled.div`
-  width: 100vw;
+  width: 1440px;
+  margin: 0 auto;
 `;
 const Container = styled.div`
   padding: 130px;

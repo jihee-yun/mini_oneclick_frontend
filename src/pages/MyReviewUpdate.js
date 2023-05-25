@@ -9,6 +9,7 @@ import cancel from "../images/cancel.png";
 
 const BodyContainer = styled.div`
   width: 100vw;
+  
 `;
 
 const Container = styled.div`

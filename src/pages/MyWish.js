@@ -6,8 +6,10 @@ import x from "../images/x.png"
 import MyWishSectionBox from "./MyWishSectionBox";
 
 const Container = styled.div`
+
   font-weight: bold;
   font-size: 1.3em;
+
   
   .head {
     margin-bottom: 50px;
@@ -41,7 +43,7 @@ const SectionBox1 = styled.div`
   display: flex;
   flex-direction: column;
   width: 240px;
-  height: 290px;
+  height: 310px;
   /* border: 1px solid lightgray; */
   margin-bottom: 50px;
 `;

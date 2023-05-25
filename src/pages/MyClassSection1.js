@@ -23,7 +23,7 @@ const SectionBox1 = styled.div`
   display: flex;
   flex-direction: column;
   width: 240px;
-  height: 290px;
+  height: 310px;
   box-sizing: border-box;
   /* border: 1px solid lightgray; */
   margin-bottom: 30px;
