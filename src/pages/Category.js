@@ -211,10 +211,6 @@ const event = (listData) => {
                   <Description>{listData.intro}</Description>
                   <PriceDate>
                     <div className="price">{listData.price}원</div>
-                    <div className="dateContain">
-                      <div className="date">시작일 : {listData.startDate}</div>
-                      <div className="date">종료일 : {listData.endDate}</div>
-                    </div>
                   </PriceDate>
               </SectionBox1>
             </div>
