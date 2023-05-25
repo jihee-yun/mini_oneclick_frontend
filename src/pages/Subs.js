@@ -24,48 +24,42 @@ const Container = styled.div`
   }
 `;
 
-
-
 const Subscriptions = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
+  margin-top: 40px;
 `;
 
-const SubscriptionContainer = styled.form`
+const SubscriptionContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 10px;
+  margin-right: 20px;
 `;
 
 const SubscriptionLabel = styled.label`
   margin-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  transition: color 1.3s ease;
+
+  &:hover {
+    color: #333;
+  }
 `;
 
 const Price = styled.div`
-  margin-top: 20px;
-  font-size: 24px;
+  margin-top: 40px;
+  font-size: 28px;
   font-weight: bold;
+  color: black;
 `;
 
-// const Button = styled.button`
-//   margin-top: 20px;
-//   padding: 10px 20px;
-//   border: none;
-//   background-color: #FC7373;
-//   color: white;
-//   font-weight: bold;
-//   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-
-//   /* 모바일 */
-//   @media (max-width: 768px) {
-//     width: 100%;
-//   }
-// `;
-
 const SpanStyle = styled.span`
-  font-weight: .5rem;
-  font-size: .5rem;
+  font-size: 14px;
   color: gray;
 `;
 

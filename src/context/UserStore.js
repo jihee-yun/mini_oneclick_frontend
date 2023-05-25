@@ -14,6 +14,7 @@ const UserStore = (props) => {
   const [categoryNum, setCategoryNum] = useState("");
   const [lectureName, setLectureName] = useState("");
   const [paymentNum, setPaymentNum] = useState("");
+  const [paySubNum, setPaySubNum] = useState("");
   const [info, setInfo] = useState([
     "전체보기",
     "요리",
@@ -24,7 +25,7 @@ const UserStore = (props) => {
 
   return(
   <> 
-  <UserContext.Provider value={{paymentNum, setPaymentNum ,lectureName, setLectureName, isLogin, setIsLogin, userName, setUserName, phone, setPhone, mail, setMail, memberNum, setMemberNum, lectureNum, setLectureNum, userId, setUserId, categoryNum, setCategoryNum, info, setInfo, price, setPrice}}>
+  <UserContext.Provider value={{paySubNum, setPaySubNum,paymentNum, setPaymentNum ,lectureName, setLectureName, isLogin, setIsLogin, userName, setUserName, phone, setPhone, mail, setMail, memberNum, setMemberNum, lectureNum, setLectureNum, userId, setUserId, categoryNum, setCategoryNum, info, setInfo, price, setPrice}}>
     {props.children}
   </UserContext.Provider>
   </>

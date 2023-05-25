@@ -54,7 +54,6 @@ const PayComplite = () => {
                     <Link to="/Mypage">
                         <Button className="btnstyle">마이페이지</Button>
                     </Link>
-                <Link to="/MySubs">내 구독권</Link>
             </Container>
         <Footer />
         </>

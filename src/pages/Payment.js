@@ -24,7 +24,7 @@ cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
 
 const Payment = ({ price }) => {
-    const { paySubNum } = useParams();
+    // const { paySubNum } = useParams();
     const { userName, phone, mail, memberNum} = useContext(UserContext);
     let type = ""; // 구독 Type_값을 위해..
       if(price === 300000) {

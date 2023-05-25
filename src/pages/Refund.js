@@ -29,7 +29,7 @@ const RePayBtn = styled.button`margin-top: 20px;
 
 const Refund = () => {
   // 해당 PaySubNum 갖고와서 쏴주면 끝.
-  const paySubNum = 10;
+  const { paySubNum } = useContext(UserContext);
 
 
   const navigate = useNavigate(); // 환불성공시 홈으로;

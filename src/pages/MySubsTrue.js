@@ -117,7 +117,7 @@ const Body = styled.div`
 
 const MySubsTrue = () => {
   const context = useContext(UserContext);
-  const { userId } = context;
+  const { userId, setPaySubNum } = context;
 
   // 내 구독권 조회
   const [mySubsInfo, setSubsInfo] = useState("");
@@ -170,7 +170,7 @@ const MySubsTrue = () => {
         </div>
       </div>
     ))}
-      {isButton === false && <Refund></Refund>}
+      {isButton === false && <Refund />}
       <br />
       <div className="notification">
         <img src={sign} alt="알림"></img>
