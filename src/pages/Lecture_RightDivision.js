@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserStore";
 import OrdinaryPayment from "./OrdinaryPayment";
 import { Navigate, useNavigate } from "react-router-dom";
-import CartBtn from "../utils/CartBtn";
+
 
 
 // 오른쪽 메뉴
