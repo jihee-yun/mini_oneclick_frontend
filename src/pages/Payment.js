@@ -95,7 +95,7 @@ const Payment = ({ price }) => {
       console.log(memberNum);
       console.log(type);
       try {
-        await AxiosApi.paymentInsert(lectureNum, memberNum, response.merchant_uid, price, type);
+        await AxiosApi.paymentInsert(memberNum, response.merchant_uid, price, type);
         // 위에 1에 lectureNum 들어갈예정 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         navigate("/PayComplite");
       } catch(e) {
