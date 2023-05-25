@@ -164,7 +164,6 @@ const CategoryList = () => {
           const lecture = lecInfo.data[0];
           setLectureNum(lecture.lectureNum);
           console.log("LectureNum 출력 : " + lecture.lectureNum);
-
         };
         console.log(sortList);
         if(sortNum === 1) {
@@ -204,7 +203,7 @@ const event = (listData) => {
                     <Image src={listData.thum} alt="class thumbnail" />
                   </Thumbnail>
                   <CategoryTextStyle>
-                    <Category>{info[categoryNum]}</Category>
+                    <Category>{listData.categoryName}</Category>
                     <hr />
                     <Category className="line">{listData.lecturer}</Category>
                   </CategoryTextStyle>

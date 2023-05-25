@@ -233,7 +233,7 @@ const incQuantity = (count) => {
     {list && list.map(Lecturelist => (
     <Contain key={Lecturelist.id}>
       <ClassCategory>
-        {info}
+        {info[categoryNum]}
       </ClassCategory>
       <ClassTitle>
         <h3>{Lecturelist.name}</h3>
