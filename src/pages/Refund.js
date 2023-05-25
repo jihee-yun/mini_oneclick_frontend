@@ -7,6 +7,7 @@ import UserStore, { UserContext } from "../context/UserStore";
 import { useContext } from "react";
 import { useState } from "react";
 import Modal from "../utils/Modal";
+import { useParams } from "react-router-dom/dist";
 
 const Container = styled.div`
   display: flex;
@@ -27,8 +28,10 @@ const RePayBtn = styled.button`margin-top: 20px;
 
 
 const Refund = () => {
-  // 해당 PaymentNum 갖고와서 쏴주면 끝.
-  const { paymentNum } = useContext(UserContext);
+  // 해당 PaySubNum 갖고와서 쏴주면 끝.
+  const paySubNum = 10;
+
+
   const navigate = useNavigate(); // 환불성공시 홈으로;
   const [showModal, setShowModal] = useState(false);
   
@@ -38,11 +41,12 @@ const Refund = () => {
   const closeModal = () => {
     setShowModal(false);
   };
+  
 
   const onClickPayBack = async() => {
-    console.log("환불 paymentNum : " + paymentNum);
+    console.log("환불 paymentNum : " + paySubNum);
     try {
-      const response = await AxiosApi.payBack(paymentNum);
+      const response = await AxiosApi.payBack(paySubNum);
       const isRefund = response.data;
       if(isRefund) {
         console.log("구독권 환불 성공");

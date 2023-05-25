@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { UserContext } from "../context/UserStore";
 import AxiosApi from "../api/AxiosApi";
+import { useParams } from "react-router-dom/dist";
 // import { type } from "@testing-library/user-event/dist/type";
 
 
@@ -23,6 +24,7 @@ cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
 
 const Payment = ({ price }) => {
+    const { paySubNum } = useParams();
     const { userName, phone, mail, memberNum} = useContext(UserContext);
     let type = ""; // 구독 Type_값을 위해..
       if(price === 300000) {

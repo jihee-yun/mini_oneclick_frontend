@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AxiosApi from "../api/AxiosApi";
 import { UserContext } from "../context/UserStore";
 import sign from "../images/warning.png";
+import Refund from "./Refund";
 
 const Head = styled.div`
   display: flex;
@@ -169,7 +170,7 @@ const MySubsTrue = () => {
         </div>
       </div>
     ))}
-      {isButton === false && <button>구독권 환불</button>} 
+      {isButton === false && <Refund></Refund>}
       <br />
       <div className="notification">
         <img src={sign} alt="알림"></img>
