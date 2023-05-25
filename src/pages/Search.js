@@ -7,7 +7,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const BodyContainer = styled.div`
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
 `;
 

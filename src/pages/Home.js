@@ -12,7 +12,7 @@ import slide1 from "../images/slide1.png";
 import slide2 from "../images/slide2.png";
 
 const BoxContainer = styled.div`
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
 `;
 
