@@ -16,6 +16,12 @@ const Container = styled.div`
   
   .head {
     margin-bottom: 50px;
+
+    span {
+      font-size: 11px;
+      color: darkgray;
+      cursor: pointer;
+    }
     }
 
   .arrow {
@@ -59,13 +65,13 @@ const Container = styled.div`
   }
 `;
 
-const MyClassSection = () => {
+const MyClassSection = ({onSelect}) => {
   return(
     <>
     <Container>
       <div>
         <MyClassSection1 />
-        <MyClassSection2 />
+        <MyClassSection2 onSelect={onSelect}/>
       </div>
     </Container>
     </>

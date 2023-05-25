@@ -6,10 +6,9 @@ import leftarrow from "../images/left-arrow.png";
 import rightarrow from "../images/right-arrow.png";
 import x from "../images/x.png"
 import WishBox from './MyWishSectionBox';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Section2 = styled.div`
-  /* height: 400px; */
   display: flex;
   justify-content: left;
   overflow-x: hidden;
@@ -25,11 +24,11 @@ const SectionBox2 = styled.div`
   flex-direction: column;
   width: 240px;
   height: 290px;
-  /* border: 1px solid lightgray; */
   margin-bottom: 50px;
 `;
 
-const MyClassSection2 = () => {
+const MyClassSection2 = ({onSelect}) => {
+  const navigate = useNavigate();
   const context = useContext(UserContext);
   const { userId, setCategoryNum, setLectureNum } = context;
 
@@ -77,9 +76,13 @@ const MyClassSection2 = () => {
     setLectureNum(lecNum);
   }
 
+  const movePage = () => {
+    onSelect("위시");
+  }
+
   return(
     <>
-      <p className="head">위시리스트</p>
+      <p className="head">위시리스트&nbsp;&nbsp;&nbsp;<span onClick={movePage}>전체보기</span></p>
       {myWishInfo.length > 3 && (
       <div className="arrow2">
         <img src={leftarrow} alt="이전" onClick={prevClick2}/>

@@ -20,8 +20,6 @@ const MySubs = () => {
     mySubsInfo();
   },[userId]);
 
-  console.log(mySubsInfo);
-
   return(
     <>
     {mySubsInfo && mySubsInfo.map(mySubs => (

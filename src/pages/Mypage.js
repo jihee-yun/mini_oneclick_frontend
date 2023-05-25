@@ -161,6 +161,10 @@ const Mypage = () => {
     navigate('/home');
   };
 
+  const selectedChange = (info) => {
+    setSelectedInfo(info);
+  };
+
    return(
     <>
     {memberInfo && memberInfo.map(info => (
@@ -195,7 +199,7 @@ const Mypage = () => {
       <a href="https://www.naver.com/"
          target="_blank"
          rel="noopener noreferrer"><Banner></Banner></a>
-         {selectedInfo === "메인" && <ClassSection />}
+         {selectedInfo === "메인" && <ClassSection onSelect={selectedChange}/>}
          {selectedInfo === "수강" && <MyClass />}
          {selectedInfo === "위시" && <MyWish />}
          {selectedInfo === "후기" && <MyReview />}
