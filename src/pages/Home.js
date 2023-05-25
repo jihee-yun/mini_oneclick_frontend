@@ -11,6 +11,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import slide1 from "../images/slide1.png";
 import slide2 from "../images/slide2.png";
 
+const BoxContainer = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+`;
+
 const Box = styled.h3`
   margin-left: 100px;
   margin-right: 60px;
@@ -50,7 +55,7 @@ const LectureBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 240px;
-  height: 290px;
+  height: 310px;
   margin-bottom: 50px;
 `;
 
@@ -146,6 +151,7 @@ const Home = () => {
   return (
     <>
       <Header />
+      <BoxContainer>
       <Box>
         <SliderBox>
           <Slider {...slideSetting}>
@@ -181,6 +187,7 @@ const Home = () => {
           ))}
         </Container2>
       </Box>
+      </BoxContainer>
       <Footer />
     </>
   );

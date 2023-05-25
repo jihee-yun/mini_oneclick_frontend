@@ -61,7 +61,7 @@ const Footer = () => {
   } 
 
   return(
-    < FooterStyled>
+    <FooterStyled>
       <footer>
         <div className="DivFooter">
           <Section>

@@ -6,6 +6,11 @@ import wish from "../images/wish.png";
 import Header from "./Header";
 import Footer from "./Footer";
 
+const BodyContainer = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+`;
+
 const Container = styled.div`
   /* margin: 60px; */
   margin-top: 60px;
@@ -23,7 +28,7 @@ const LectureBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 240px;
-  height: 290px;
+  height: 310px;
   /* margin-left: 30px; */
   /* margin-top: 30px; */
   margin: 25px;
@@ -94,6 +99,7 @@ const Search = () => {
   return(
     <>
       <Header />
+      <BodyContainer>
       <Container>
         {searchLecture
         .filter((item) => item.name.includes(searchInput))
@@ -108,6 +114,7 @@ const Search = () => {
           </LectureBox>
         ))}
       </Container>
+      </BodyContainer>
       <Footer />
     </>
   );

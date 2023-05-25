@@ -246,7 +246,6 @@ const Header = () => {
         </ul>
       </NavBlock>
     </HeaderBlock>
-    {/* <hr style={{backgroundColor:"lightgray", border:".3px solid lightgray"}}/> */}
     </>
   );
 };
