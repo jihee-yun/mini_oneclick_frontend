@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import styled from "styled-components";
@@ -10,6 +10,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import slide1 from "../images/slide1.png";
 import slide2 from "../images/slide2.png";
+import { UserContext } from "../context/UserStore";
+import { Link } from "react-router-dom";
+import MyClass from "./MyClass";
 
 const BoxContainer = styled.div`
   max-width: 1440px;
@@ -111,6 +114,8 @@ const Price1 = styled.p`
 const Home = () => {
   const [bakingInfo, setBakingInfo] = useState("");
   const [downLectureInfo, setDownLectureInfo] = useState("");
+  const context = useContext(UserContext);
+  const { setCategoryNum, setLectureNum} = context;
 
   const slideSetting = {
     dots: true,
@@ -118,6 +123,12 @@ const Home = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1
+  };
+
+  const setInfo = (cateNum, lecNum) => {
+    console.log(cateNum);
+    setCategoryNum(cateNum);
+    setLectureNum(lecNum);
   };
 
   // 베이킹 추천 클래스
@@ -163,7 +174,8 @@ const Home = () => {
         <h3>추천 클래스</h3>
         <Container1>
         {downLectureInfo && downLectureInfo.map(lecture => (
-            <LectureBox key={lecture.num}>
+          <Link to = "/class" style={{textDecoration: "none", color: "inherit"}}>
+            <LectureBox key={lecture.num} onClick={() => setInfo(lecture.categoryNum, lecture.num)}>
               <Wish><div><img src={wish} alt="찜" /></div></Wish>
               <Thum imageUrl={lecture.thum}></Thum>
               <Category1>{lecture.categoryName} | {lecture.lecturer}</Category1>
@@ -171,19 +183,22 @@ const Home = () => {
               <Intro1>{lecture.intro}</Intro1>
               <Price1>{lecture.price.toLocaleString()}원</Price1>
             </LectureBox>
+          </Link> 
           ))}
         </Container1>
         <h3>베이킹 추천 클래스</h3>
         <Container2>
           {bakingInfo && bakingInfo.map(item => (
-            <LectureBox key={item.num}>
-              <Wish><div><img src={wish} alt="찜" /></div></Wish>
-              <Thum imageUrl={item.thum}></Thum>
-              <Category1>{item.categoryName} | {item.lecturer}</Category1>
-              <Name1>{item.name}</Name1>
-              <Intro1>{item.intro}</Intro1>
-              <Price1>{item.price.toLocaleString()}원</Price1>
-            </LectureBox>
+            <Link to = "/class" style={{textDecoration: "none", color: "inherit"}}>
+              <LectureBox key={item.num} onClick={() => setInfo(item.categoryNum, item.num)}>
+                <Wish><div><img src={wish} alt="찜" /></div></Wish>
+                <Thum imageUrl={item.thum}></Thum>
+                <Category1>{item.categoryName} | {item.lecturer}</Category1>
+                <Name1>{item.name}</Name1>
+                <Intro1>{item.intro}</Intro1>
+                <Price1>{item.price.toLocaleString()}원</Price1>
+              </LectureBox>
+            </Link>
           ))}
         </Container2>
       </Box>
