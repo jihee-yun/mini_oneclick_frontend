@@ -24,8 +24,8 @@ const PayBtn = styled.button`
   }`;
 
 
-const OrdinaryPayment = ({props}) => {
-    const { userName, phone, mail, memberNum } = useContext(UserContext);
+const OrdinaryPayment = () => {
+    const { userName, phone, mail, memberNum, price , lectureNum} = useContext(UserContext);
 
     const navigate = useNavigate(); // 결제성공시 결제완료 페이지로
 
@@ -50,13 +50,13 @@ const OrdinaryPayment = ({props}) => {
             pg: "kakao",
             pay_method: "kakaopay",
             merchant_uid: `mid_${new Date().getTime()}`,
-            amount: 1000, // 강의에서 떙겨온 가격 넣을예정
+            amount: price, // 강의에서 떙겨온 가격 넣을예정
             name: "OneClick 강의", // 강의에서 떙겨온 이름 넣을예정
             buyer_name: userName,
             buyer_tel: phone,
             buyer_email: mail,
             memberNum: memberNum, 
-            lectureNum: 10 // 임시더미데이터 수정예정(강의코드 받으면 contextapi로 가져올예정)
+            lectureNum: lectureNum // 임시더미데이터 수정예정(강의코드 받으면 contextapi로 가져올예정)
           };
           // 결제 창 호출
           IMP.request_pay(data, callback);
@@ -75,7 +75,7 @@ const OrdinaryPayment = ({props}) => {
           console.log(memberNum);
 
           try {
-            await AxiosApi.paymentClass(10, memberNum, response.merchant_uid); // 여기 추가
+            await AxiosApi.paymentClass(lectureNum, memberNum, response.merchant_uid, price); // 여기 추가
             // 강의에서 가져온 가격만 들어가면됩니다!
             navigate("/PayComplite");
           } catch(e) {
@@ -92,7 +92,7 @@ const OrdinaryPayment = ({props}) => {
 
     return(
         <>
-            <PayBtn onClick={onClickPaymentClass}>{props}원 결제하기</PayBtn>
+            <PayBtn onClick={onClickPaymentClass}>{price}원 결제하기</PayBtn>
         </>
     );
 };

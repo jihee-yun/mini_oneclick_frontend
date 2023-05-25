@@ -145,7 +145,7 @@ const PaymentStyle = styled.div`
 
 const RightDivision = () => {
   const context = useContext(UserContext);
-  const {memberNum, lectureNum, categoryNum, info} = context;
+  const {memberNum, lectureNum, categoryNum, info, price} = context;
 
   const [list, setList] = useState([]);
   const [wishChk, setWishChk] = useState(false);
@@ -237,7 +237,7 @@ const incQuantity = (count) => {
       </ClassCategory>
       <ClassTitle>
         <h3>{Lecturelist.name}</h3>
-        <h5 style={{margin: "0px"}}>강의 종료일 : {Lecturelist.endDate}</h5>
+        <h5 style={{margin: "5px"}}>강의 종료일 : {Lecturelist.endDate}</h5>
       </ClassTitle>
       <ClassBtn>
         <li onClick={wishChkBtn} className={wishChk ? 'select' : 'disable'}>찜하기</li>
@@ -255,7 +255,7 @@ const incQuantity = (count) => {
       </ClassBtn>
       <PaymentStyle>
         <StyledButton onClick={pricePay} >구독하기</StyledButton> 
-        <OrdinaryPayment>{Lecturelist.price}원 결제</OrdinaryPayment> 
+        <OrdinaryPayment />
       </PaymentStyle>
       <ClassTitle >
         <h2>강의 장소</h2>
