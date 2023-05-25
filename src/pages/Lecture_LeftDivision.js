@@ -62,10 +62,10 @@ const ClassDescTitle = styled.div`
   padding: 5px;
   /* display: flex; */
   margin: 20px 0;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: nowrap;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
 `;
 
 const Introduction = styled.div`
@@ -115,7 +115,7 @@ const Contain = styled.div`
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
   }
   .noBtnStyle {
     opacity:0;
@@ -134,8 +134,10 @@ const ClassCreatorDesc = styled.div`
   padding: 20px;
   font-size: 24px;
   line-height: 1.4em;
+  width: 90%;
+  /* border: 1px solid black; */
   img {
-    width: 50%;
+    width: 100px;
     border-radius: 50%;
   }
   padding-bottom: 0;
@@ -160,11 +162,15 @@ const CreatorIntro = styled.div`
   display:flex;
   flex-wrap:column;
   justify-content: center;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
 `
 
 // 클래스 후기 제목
 const ReviewTitle = styled.div`
-  border: 1px solid black;
+  
 `
 
 
@@ -229,14 +235,14 @@ const LeftDivision = () => {
         <div className={`${DescSel === 1 ? `descSel` : `descDisabled`}`}>
         <Contain>
           {/* 메뉴 버튼 시 z-index 변경 */}   
-          <ClassDescTitle>  {/* 클래스 소개 */}
+          <ClassDescTitle>
             {Lecturelist.intro}
           </ClassDescTitle>
           <Introduction> 
-            <Slider></Slider> {/* 슬라이더 */}
+            {/* <Slider></Slider> */}
           </Introduction>
           <ClassDetail>
-            <img src="https://firebasestorage.googleapis.com/v0/b/oneclick-cf94d.appspot.com/o/%EA%B0%95%EC%9D%98%20%EC%9D%B4%EB%AF%B8%EC%A7%80%2F%EA%B3%B5%EC%98%88%2F%EA%B3%B5%EC%98%881%EB%B2%88%2F%EA%B0%95%EC%9D%98%EC%84%A4%EB%AA%851.png?alt=media&token=bd4bca73-396b-4959-aa7a-79c38912cdba" alt="" />
+          <img src={Lecturelist.description} alt="" />
           </ClassDetail>
         </Contain>
       </div>
@@ -247,16 +253,14 @@ const LeftDivision = () => {
               크리에이터<br/>
               <b>{Lecturelist.lecturer}</b> 입니다.
             </div>
-            <div>
-              <img src="https://cdn.class101.net/images/1dfa3159-518b-43f7-9647-6dc8f53de06d/2048xauto.webp" alt="" />
-            </div>
+            <img src={Lecturelist.lecturer_photo} alt="" />
           </ClassCreatorDesc>
           <ClassCreator>
               <li><img src="https://class101.net/images/ic-youtube.png" alt="" />YouTube</li>
               <li><img src="https://class101.net/images/ic-instagram.png" alt="" />Instagram</li>
           </ClassCreator>
           <CreatorIntro>
-              {Lecturelist.description}
+              <img src={Lecturelist.lecturer_desc} alt="" />
           </CreatorIntro>
         </Contain>
       </div>    
@@ -266,7 +270,7 @@ const LeftDivision = () => {
         <Contain>
           <ReviewWrite></ReviewWrite>
           <ReviewTitle>
-            실제로 클래스를 진행한 수강생들의 생생한 후기 {review.length}개가 있어요.
+            실제로 클래스를 진행한 수강생들의 생생한 후기 <span style={{color: "blue", fontWeight: "bold"}}>{review.length}개</span>가 있어요.
           </ReviewTitle>
           {review && review.map(reviewData => (
           <div className="reviewlist" key={review.id}>
