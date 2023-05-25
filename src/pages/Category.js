@@ -196,7 +196,7 @@ const event = (listData) => {
       <SectionContain>
         <Section1>
         {list && list.map(listData => (
-          <Link to="/class"  >
+          <Link to="/class">
             <div key={list.num} onClick={() => {event(listData)}} >
               <SectionBox1>
                 <Heart><div><img src={heart} alt="좋아요" /></div></Heart>
