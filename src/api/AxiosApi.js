@@ -334,10 +334,11 @@ const AxiosApi = {
   },
 
   // 강의페이지 사용자 장바구니에 추가시키기
-  acceptCartList: async(lectureNum, memberNum) => {
+  acceptCartList: async(lectureNum, memberNum, quantity) => {
     const data = {
       lectureNum: lectureNum,
-      memberNum: memberNum
+      memberNum: memberNum,
+      quantity: quantity
     }
     return await axios.post(KH_DOMAIN + `/class/acceptCartList`, data);
   },

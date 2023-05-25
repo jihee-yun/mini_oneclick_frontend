@@ -23,6 +23,7 @@ const Container = styled.div`
   min-width: 25%;
   box-shadow: 1px 1px 1px 1px lightgray;
   /* padding: auto; */
+  position: relative;
   .btnStyle {
     border-radius: 5px;
   color: white;
@@ -129,13 +130,14 @@ const RightDivision = () => {
   useEffect(() => {
     const lectureList = async() => {
       const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
-      if(rsp.status === 200) {
+      const loadWishChk = await AxiosApi.getWishChk(lectureNum, memberNum);
+      if(rsp.status === 200 && loadWishChk.status === 200) {
         setList(rsp.data.lectureList);
-        setWishChk(rsp.data.regWish);
+        setWishChk(loadWishChk.data);
       }
     }
     lectureList();
-  }, [categoryNum, lectureNum]);
+  }, [categoryNum, lectureNum, wishChk]);
 
 const pricePay = () => {
   const navigate = useNavigate;
@@ -151,7 +153,7 @@ const wishChkBtn = () => {
   const regChk = async() => {
     const rsp = await AxiosApi.getWishChk(lectureNum, memberNum);
     console.log("getWishChk 실행");
-    if(rsp.data === true) {
+    if(rsp.data === false) {
       console.log("getWishchk 완료");
       console.log("acceptWishList 실행");
       const rsp = await AxiosApi.acceptWishList(lectureNum, memberNum);
@@ -163,7 +165,7 @@ const wishChkBtn = () => {
       }
     } else {
       const rsp = await AxiosApi.delWishList(lectureNum, memberNum);
-      if(rsp.data === true) {
+      if(rsp.data === false) {
         alert("찜하기가 취소됐습니다.");
         setWishChk(false);
       } else {
@@ -182,7 +184,7 @@ const cartChkBtn = () => {
   const regChk = async() => {
     const rsp = await AxiosApi.getCartChk(lectureNum, memberNum);
     if(rsp.data === true) {
-      const rsp = await AxiosApi.acceptCartList(lectureNum, memberNum);
+      const rsp = await AxiosApi.acceptCartList(lectureNum, memberNum, quantity);
       if(rsp.data === true) {
         alert("장바구니에 담기 완료");
       } else {
@@ -203,9 +205,6 @@ const incQuantity = (count) => {
   setQuantity(count + 1);
 };
 
-useEffect(() => {
-
-}, [wishChk]);
 
  return (
   <Container>
@@ -222,14 +221,17 @@ useEffect(() => {
         <li onClick={cartChkBtn}><img src={heart_icon} alt="" />카트담기</li>
       </ClassBtn>
       <CartOption>
-        <div>인원 수</div>
-        <div className="quantity-control">
-          <button onClick={() => decQuantity(quantity)}>-</button>
-          <span>
-          <input type="number" value={quantity} readOnly />
-          </span>
-          <button onClick={() => incQuantity(quantity)}>+</button>
-        </div>
+        <div>
+          <div>인원 수</div>
+          <div className="quantity-control">
+            <button onClick={() => decQuantity(quantity)}>-</button>
+            <span>
+            <input type="number" value={quantity} readOnly />
+            </span>
+            <button onClick={() => incQuantity(quantity)}>+</button>
+          </div>
+          </div>
+        <div></div>
       </CartOption>
       <PaymentStyle>
         <OrdinaryPayment>{Lecturelist.price}원 결제</OrdinaryPayment> 
