@@ -93,8 +93,6 @@ const ClassBtn = styled.div`
   .cartBtn {
     display: flex;
     width: 100%;
-    /* justify-content: space-evenly; */
-    border: 1px solid black;
     li {
       width: 40%;
     }
@@ -107,16 +105,16 @@ const ClassBtn = styled.div`
   .quantity-desc {
     font-size: 12px;
     font-weight: bold;
+    text-align: right;
     width: 40px;
-    border: 1px solid black;
   }
   .quantity-control {
-    margin: 0 5px;
-    border: 1px solid black;
+    margin: 0 2px;
     display:flex;
     flex-wrap: nowrap;
-    height: 25px;
+    height: 20px;
     input {
+      display: flex;
       text-align: center;
       width: 25px;
       height: 20px;
