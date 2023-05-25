@@ -128,12 +128,14 @@ const MySubsTrue = () => {
     mySubsInfo();
   },[userId]);
 
+  console.log(mySubsInfo);
   // 결제 내역 조회
   const [paymentInfo, setPaymentInfo] = useState([]);
   useEffect(() => {
     const paymentInfo = async() => {
       const response = await AxiosApi.paymentGet(userId);
       if(response.status === 200) setPaymentInfo(response.data);
+      
     };
     paymentInfo();
   }, []);
@@ -142,6 +144,7 @@ const MySubsTrue = () => {
   (paymentInfo.length > 0 ? 
   paymentInfo.some(payment => payment.created > mySubsInfo[0].mySubStartDate) : false);
   console.log(isButton);
+  console.log("paymentInfo : " + paymentInfo);
 
   return(
     <>

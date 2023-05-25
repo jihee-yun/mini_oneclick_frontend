@@ -269,9 +269,9 @@ const AxiosApi = {
   },
 
   // 구독권 환불
-  payBack: async(paymentNum) => {
+  payBack: async(paySubNum) => {
     const payback = {
-      paymentNum: paymentNum
+      paySubNum: paySubNum
     }
     return await axios.post(KH_DOMAIN + "/payback", payback);
   },
