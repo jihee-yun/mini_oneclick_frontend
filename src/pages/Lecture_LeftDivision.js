@@ -99,6 +99,10 @@ const ClassDetail = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items:center;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
 `
 
 // 크리에이터 div 페이지
@@ -232,7 +236,7 @@ const LeftDivision = () => {
             <Slider></Slider> {/* 슬라이더 */}
           </Introduction>
           <ClassDetail>
-            
+            <img src="https://firebasestorage.googleapis.com/v0/b/oneclick-cf94d.appspot.com/o/%EA%B0%95%EC%9D%98%20%EC%9D%B4%EB%AF%B8%EC%A7%80%2F%EA%B3%B5%EC%98%88%2F%EA%B3%B5%EC%98%881%EB%B2%88%2F%EA%B0%95%EC%9D%98%EC%84%A4%EB%AA%851.png?alt=media&token=bd4bca73-396b-4959-aa7a-79c38912cdba" alt="" />
           </ClassDetail>
         </Contain>
       </div>

@@ -135,11 +135,12 @@ const PriceDate = styled.div`
 
 const Heart = styled.div`
   position: absolute;
-  top: 100px;
+  bottom: 20px;
   right: 8px;
   img {
-    width: 15px;
-    height: 15px;
+    width: 25px;
+    height: 25px;
+    z-index: 10;
   }
     
 `;

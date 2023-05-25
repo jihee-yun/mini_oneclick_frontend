@@ -237,6 +237,7 @@ const incQuantity = (count) => {
       </ClassCategory>
       <ClassTitle>
         <h3>{Lecturelist.name}</h3>
+        <h5 style={{margin: "0px"}}>강의 종료일 : {Lecturelist.endDate}</h5>
       </ClassTitle>
       <ClassBtn>
         <li onClick={wishChkBtn} className={wishChk ? 'select' : 'disable'}>찜하기</li>
