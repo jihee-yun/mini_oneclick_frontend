@@ -147,14 +147,7 @@ const Heart = styled.div`
 const CategoryList = () => {
  // nav 메뉴에서 강의 카테고리 클릭시 context 로 값 끌어옴
   const context = useContext(UserContext);
-  const { setLectureNum, categoryNum, lectureNum} = context;
-  const info = [
-    "전체보기",
-    "요리",
-    "베이킹",
-    "공예",
-    "운동"
-  ];
+  const { setLectureNum, categoryNum, lectureNum, info} = context;
   const [sortNum, setSortNum] = useState(1);
   // axios 로 받아온 DB를 담아두기
   const [list, setList] = useState([]);

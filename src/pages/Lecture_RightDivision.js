@@ -145,7 +145,7 @@ const PaymentStyle = styled.div`
 
 const RightDivision = () => {
   const context = useContext(UserContext);
-  const {memberNum, lectureNum, categoryNum} = context;
+  const {memberNum, lectureNum, categoryNum, info} = context;
 
   const [list, setList] = useState([]);
   const [wishChk, setWishChk] = useState(false);
@@ -233,7 +233,7 @@ const incQuantity = (count) => {
     {list && list.map(Lecturelist => (
     <Contain key={Lecturelist.id}>
       <ClassCategory>
-        {/* 카테고리 이름 */}
+        {info}
       </ClassCategory>
       <ClassTitle>
         <h3>{Lecturelist.name}</h3>
