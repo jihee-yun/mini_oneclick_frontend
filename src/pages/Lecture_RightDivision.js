@@ -73,22 +73,24 @@ const ClassBtn = styled.div`
     width: 40%;
     border-radius: 5px;
     background-color: lightgray;
-    img {
-      width:15px;
-      margin: 3px;
-    }
-  }
-  li:hover {
+
+    :hover {
     background-color: gray;
     cursor: pointer;
-  }
-  // 찜 버튼 활성화 시
-  .select {
-    background-color: lightgray;
+    }
   }
   // 찜 버튼 비활성화 시
   .disable {
-    background-color: darkgray;
+    background-color: lightgray;
+  }
+  // 찜 버튼 활성화 시
+  .select {
+    background-color: #FC7373;
+    color: white;
+    :hover {
+      background-color: #FC7373;
+      color: white;
+    }
   }
   .cartBtn {
     display: flex;
@@ -237,7 +239,7 @@ const incQuantity = (count) => {
         <h3>{Lecturelist.name}</h3>
       </ClassTitle>
       <ClassBtn>
-        <li onClick={wishChkBtn} className={wishChk ? 'disable' : 'select'}><img src={heart_icon} alt="" />찜하기</li>
+        <li onClick={wishChkBtn} className={wishChk ? 'select' : 'disable'}>찜하기</li>
         <div className="cartBtn">
           <div className="quantity-desc">인원</div>
           <div className="quantity-control">
@@ -247,7 +249,7 @@ const incQuantity = (count) => {
             </span>
             <button onClick={() => incQuantity(quantity)}>+</button>
           </div>
-          <li onClick={cartChkBtn}><img src={heart_icon} alt="" />카트담기</li>
+          <li onClick={cartChkBtn}>카트담기</li>
         </div>
       </ClassBtn>
       <PaymentStyle>

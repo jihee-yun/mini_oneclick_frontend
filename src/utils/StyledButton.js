@@ -23,14 +23,11 @@ const StyledButton = styled.button`
 `
 
 // 구독 결제 이동
-const onClick = () => {
-  
-}
 
 function Button ({children}) {
   
   return (
-    <StyledButton onClick={onClick}>{children}</StyledButton>
+    <StyledButton>{children}</StyledButton>
   );
 }
 export default Button;
