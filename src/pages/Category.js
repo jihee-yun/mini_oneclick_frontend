@@ -195,7 +195,7 @@ const CategoryList = () => {
         if(sortNum === 1) {
           setList(sortList.sort((a, b) => a.likeCount - b.likeCount)); // 인기순으로 정렬
         } else if (sortNum === 2) {
-          setList(sortList.sort((a, b) => a.startDate - b.startDate)); // 날짜 빠른 순으로 정렬
+          setList(sortList.sort((a, b) => a.endDate - b.endDate)); // 날짜 빠른 순으로 정렬
         } else if (sortNum === 3) {
           setList(sortList.sort((a, b) => b.price - a.price)); // 가격 높은 순으로 정렬
         }

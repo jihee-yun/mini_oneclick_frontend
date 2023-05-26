@@ -194,10 +194,10 @@ const AxiosApi = {
       return await axios.post(KH_DOMAIN + `/lostPw`, findPw);
   },
   
-  // 카테고리 전부 불러오기
-  loadAll: async() => {
-    return await axios.get(KH_DOMAIN + `/category`);
-  },
+  // // 카테고리 전부 불러오기
+  // loadAll: async() => {
+  //   return await axios.get(KH_DOMAIN + `/category`);
+  // },
 
   // 카테고리 별 강의 리스트 불러오기
   loadList: async(categoryNum) => {
