@@ -172,6 +172,7 @@ const MyCart = () => {
         setAmount(payCart.amount);
         setLectureNum(payCart.lectureNum);
         setLectureName(payCart.lectureName);
+        console.log(payCart.amount);
       }
 
     };
