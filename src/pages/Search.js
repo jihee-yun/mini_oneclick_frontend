@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import AxiosApi from "../api/AxiosApi";
 import styled from "styled-components";
 import wish from "../images/wish.png";
 import Header from "./Header";
 import Footer from "./Footer";
+import { UserContext } from "../context/UserStore";
 
 const BodyContainer = styled.div`
   max-width: 1440px;
@@ -85,8 +86,15 @@ const Price = styled.p`
 
 const Search = () => {
   const { searchInput } = useParams();
-  console.log(searchInput);
   const [searchLecture, setSearchLecture] = useState([]);
+  const context = useContext(UserContext);
+  const { setCategoryNum, setLectureNum } = context;
+
+  const setInfo = (cateNum, lecNum) => {
+    console.log(cateNum);
+    setCategoryNum(cateNum);
+    setLectureNum(lecNum);
+  };
 
   useEffect(() => {
     const fetchLectureList = async() => {
@@ -96,6 +104,8 @@ const Search = () => {
     fetchLectureList();
   }, []);
 
+  console.log(searchLecture);
+
   return(
     <>
       <Header />
@@ -104,14 +114,16 @@ const Search = () => {
         {searchLecture
         .filter((item) => item.name.includes(searchInput))
         .map((item) =>(
-          <LectureBox key={item.num}>
-            <Wish><div><img src={wish} alt="찜" /></div></Wish>
-            <Thum imageUrl={item.thum}></Thum>
-            <Category>{item.categoryName} | {item.lecturer}</Category>
-            <Name>{item.name}</Name>
-            <Intro>{item.intro}</Intro>
-            <Price>{item.price.toLocaleString()}원</Price>
-          </LectureBox>
+          <Link to= "/class" style={{textDecoration: "none", color: "inherit"}}>
+            <LectureBox key={item.num} onClick={() => setInfo(item.categoryNum, item.num)}>
+              <Wish><div><img src={wish} alt="찜" /></div></Wish>
+              <Thum imageUrl={item.thum}></Thum>
+              <Category>{item.categoryName} | {item.lecturer}</Category>
+              <Name>{item.name}</Name>
+              <Intro>{item.intro}</Intro>
+              <Price>{item.price.toLocaleString()}원</Price>
+            </LectureBox>
+          </Link>
         ))}
       </Container>
       </BodyContainer>

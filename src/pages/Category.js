@@ -11,13 +11,14 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const Contain = styled.div`
-  max-width: 1200px;
+  max-width: 1440px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
 `;
 const Sort = styled.div`
+  margin-left: 120px;
   list-style: none;
   display:flex;
   flex-direction:row;
@@ -43,6 +44,8 @@ const SectionContain = styled.div`
 
 `;
 const Section1 = styled.div`
+  margin-top: 60px;
+  margin-left: 100px;
   font-weight: bold;
   font-size: 1.3em;
   margin-bottom: 50px;
@@ -64,10 +67,10 @@ const SectionBox1 = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 250px;
-  height: 400px;
-  margin: 5px;
-  border: 1px solid lightgray;
+  width: 240px;
+  height: 310px;
+  margin: 25px;
+  /* border: 1px solid lightgray; */
   z-index: 5;
 `;
 
@@ -82,7 +85,7 @@ const Image = styled.img`
   /* max-width: 100%; */
   /* max-height: 0%; */
   width: 100%;
-  height: 200px;
+  height: 150px;
   transition: transform 0.3s ease;
 
   ${Thumbnail}:hover & {
@@ -97,6 +100,7 @@ const CategoryTextStyle = styled.div`
     border: .2px solid gray;
     margin: 0;
   }
+  margin-top: -40px;
 `
 const Category = styled.div`
   padding: 0 5px;
@@ -111,18 +115,18 @@ const Title = styled.h3`
   align-items: center;
   padding: 10px 5px;
   margin: 0;
-  height: 40px;
-  font-size: .9rem;
+  /* height: 40px; */
+  font-size: .8rem;
   font-weight: bold;
   /* margin-top: 5px; */
   /* border: 1px solid black; */
 `;
 
 const Description = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: normal;
   display:flex;
-  height: 50px;
+  height: 30px;
   padding: 5px 5px;
   color: gray;
   /* border: 1px solid black; */
@@ -135,7 +139,7 @@ const PriceDate = styled.div`
   flex-direction: column;
   padding: 5px;
   .price, .date {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: bold;
     /* padding: 10px 0; */
     margin-right: 10px;
@@ -251,7 +255,7 @@ const wishBtn = (listData) => {
         {list && list.map(listData => (
           <div className="card" key={listData.num} onClick={() => {event(listData)}} >
             <SectionBox1>
-            <Link to="/class">
+            <Link to="/class" style={{ textDecoration: "none", color: "inherit"}}>
                 <Thumbnail>
                   <Image src={listData.thum} alt="class thumbnail" />
                 </Thumbnail>

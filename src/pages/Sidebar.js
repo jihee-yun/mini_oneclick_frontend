@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import AxiosApi from "../api/AxiosApi";
+import { UserContext } from "../context/UserStore";
+import { Link } from "react-router-dom";
 
 const SideBar = styled.div`
   width: 300px;
@@ -49,6 +51,9 @@ const Name = styled.div`
 
 const Sidebar = () => {
   const [topLectuer, setTopLectuer] = useState("");
+  const context = useContext(UserContext);
+  const { setCategoryNum, setLectureNum } = context;
+
 
   useEffect(() => {
     const topLectuer = async() => {
@@ -58,18 +63,28 @@ const Sidebar = () => {
     topLectuer();
   }, []);
 
+  const setInfo = (cateNum, lecNum) => {
+    console.log(cateNum);
+    setCategoryNum(cateNum);
+    setLectureNum(lecNum);
+  };
+
+  console.log(topLectuer);
+
   return(
     <>
     <SideBar>
       <h3>Top 10 Class</h3>
       {topLectuer && topLectuer.map(items => (
-        <TopBox key={items.num}>
-            <Thum imageUrl={items.thum}></Thum>
-            <InfoBox>
-              <Category>{items.categoryName}</Category>
-              <Name>{items.name}</Name>
-            </InfoBox>
-        </TopBox>
+        <Link to="/class" style={{textDecoration: "none", color: "inherit"}}>
+          <TopBox key={items.num} onClick={() => setInfo(items.categoryNum, items.num)}>
+              <Thum imageUrl={items.thum}></Thum>
+              <InfoBox>
+                <Category>{items.categoryName}</Category>
+                <Name>{items.name}</Name>
+              </InfoBox>
+          </TopBox>
+        </Link>
       ))}
 
     </SideBar>

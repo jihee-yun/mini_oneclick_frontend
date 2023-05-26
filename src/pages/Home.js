@@ -115,7 +115,7 @@ const Home = () => {
   const [bakingInfo, setBakingInfo] = useState("");
   const [downLectureInfo, setDownLectureInfo] = useState("");
   const context = useContext(UserContext);
-  const { setCategoryNum, setLectureNum} = context;
+  const { setCategoryNum, setLectureNum } = context;
 
   const slideSetting = {
     dots: true,
@@ -158,6 +158,7 @@ const Home = () => {
     /* margin-bottom: 20px; */
   `;
 
+  console.log(downLectureInfo);
 
   return (
     <>
