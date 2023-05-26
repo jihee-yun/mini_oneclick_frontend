@@ -169,10 +169,10 @@ const MyCart = () => {
       console.log(cartPayInfo.data);
       if(Array.isArray(cartInfo.data) && cartPayInfo.data.length > 0) {
         const payCart = cartInfo.data[0];
-        setAmount(payCart.amount);
-        setLectureNum(payCart.lectureNum);
-        setLectureName(payCart.lectureName);
-        console.log(payCart.amount);
+        setAmount(payCart.totalPrice);
+        setLectureNum(payCart.lecNum);
+        setLectureName(payCart.lecName);
+        
       }
 
     };
