@@ -133,6 +133,13 @@ const AxiosApi = {
     }
     return await axios.post(KH_DOMAIN + "/updateReviewContent", write);
   },
+  // 후기 삭제
+  deleteReview: async(num) => {
+    const del = {
+      num: num
+    }
+    return await axios.post(KH_DOMAIN + "/delReview", del);
+  },
   // 이미지 업로드(강의 썸네일 업데이트)
   updateImg: async(url) => {
     const update = {

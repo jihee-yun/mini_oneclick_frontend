@@ -76,6 +76,10 @@ const MyReviewSection1 = () => {
     // 리뷰 삭제 기능 구현
     const response = await AxiosApi.deleteReview(reviewNum);
     console.log(response.data);
+    if(response.data === true) {
+      const updatedWishList = myReviewInfo.filter((review) => review.num !== reviewNum);
+      setMyReviewInfo(updatedWishList);
+    }
   }
 
   return(
