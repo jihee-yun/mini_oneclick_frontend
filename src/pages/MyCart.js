@@ -167,14 +167,15 @@ const MyCart = () => {
       if(response.status === 200) setCartInfo(response.data);
       const cartPayInfo = await AxiosApi.myCartGet(userId);
       console.log(cartPayInfo.data);
-      if(Array.isArray(cartInfo.data) && cartPayInfo.data.length > 0) {
-        const payCart = cartInfo.data[0];
+      if(Array.isArray(cartPayInfo.data) && cartPayInfo.data.length > 0) {
+        const payCart = cartPayInfo.data[0];
         setAmount(payCart.totalPrice);
         setLectureNum(payCart.lecNum);
         setLectureName(payCart.lecName);
-        
-      }
+        console.log("총금액" + payCart.totalPrice);
 
+        console.log(payCart);
+      }
     };
     cartInfo();
   }, [userId]);
