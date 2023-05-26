@@ -108,7 +108,7 @@ const MyReviewSection2 = () => {
       <div className="buttonbox">
         <hr />
         <Link to={`/MyReviewWrite/${myWrite.lnum}`} style={{ textDecoration: "none", color: "inherit"}}>
-        <button onClick={() => sendLecture(myWrite.lnum)}>후기 작성</button>
+        <button className="writeBtn" onClick={() => sendLecture(myWrite.lnum)}>후기 작성</button>
         </Link>
       </div>
     </div>

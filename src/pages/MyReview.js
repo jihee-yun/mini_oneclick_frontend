@@ -99,6 +99,7 @@ const Container = styled.div`
   }
 
   .buttonbox {
+    position: relative;
     margin-top: 10px;
 
     hr {
@@ -106,11 +107,15 @@ const Container = styled.div`
       border: .3px solid lightgray;
     }
     button {
-      bottom: 15px;
+      position: absolute;
+      right: 15px;
+      top: 30px;
       width: 93%;
       height: 30px;
       background-color: #FC7373;
       border: none;
+      border-radius: 3px;
+      font-size: 0.7em;
       color: white;
       font-weight: bold;
       &:hover {

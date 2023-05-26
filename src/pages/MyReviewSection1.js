@@ -118,7 +118,7 @@ const MyReviewSection1 = () => {
      {endIndex < myReviewInfo.length && 
       <div className="moreBox" onClick={clickMore}>
       <p>더보기</p>
-      <img className="moreImg" rc={down} alt="더보기"/>
+      <img className="moreImg" src={down} alt="더보기"/>
       </div>
       }
     </MoreContainer>

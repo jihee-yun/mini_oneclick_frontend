@@ -5,7 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserStore";
 import MypageFooter from "./MypageFooter";
 import MypageHeader from "./MypageHeader";
-import cancel from "../images/cancel.png";
+import MyReviewImgUpload from "./MyReviewImgUpload";
+import { storage } from "../api/firebase";
 
 const BodyContainer = styled.div`
   width: 100vw;
@@ -149,6 +150,7 @@ const MyReviewUpdate = () => {
   const [reviewInfo, setReviewInfo] = useState("");
 
   // 후기 사진
+  const [file, setFile] = useState(null);
   const [attachment, setAttachment] =useState("");
   const [deleteImg, setDeleteImg] = useState(false);
   const [url, setUrl] = useState("");
@@ -196,11 +198,28 @@ const MyReviewUpdate = () => {
     navigate('/MyPage', { state: { selected: "후기" } });
   };
 
+  const handleFileInputChange = (e) => {
+    const {target:{files}} = e;
+    const theFile = files[0];
+    const reader = new FileReader();
+    setFile(theFile);
+
+    reader.onloadend = (finishedEvent) => {
+      const { currentTarget: {result}} = finishedEvent
+      setAttachment(result);
+    }
+    reader.readAsDataURL(theFile);
+  };
+
   const clear = () => {
     setAttachment(null);
     setDeleteImg(true);
     setUrl(null);
   }
+
+  console.log(attachment);
+  console.log(reviewInfo);
+  console.log(lectureInfo);
 
   return( 
     <>
@@ -220,16 +239,7 @@ const MyReviewUpdate = () => {
         <div id="nowByte" className="count"><span>{inputCount.toLocaleString()}</span>/{MAX_LENGTH.toLocaleString()}자</div>
       </Section2>
       ))}
-     <ImgBox>
-     <Attachment>
-            {attachment && (
-              <div>
-                <img src={attachment} width="100px" height="100px" alt="attachment" />
-                <img src={cancel} alt="취소버튼" width="15px" height="15px" onClick={clear} />
-              </div>
-            )}
-      </Attachment>
-      </ImgBox> 
+     <MyReviewImgUpload handleFileInputChange={handleFileInputChange} attachment={attachment} onClearAttachment={clear}></MyReviewImgUpload>
       <Write>
       {(inputContext || deleteImg) ?
       <button onClick={changeReview}>수정하기</button> :

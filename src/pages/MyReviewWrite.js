@@ -153,9 +153,10 @@ const MyReviewWrite = () => {
     if(file){
       const storageRef = storage.ref();
       const fileRef = storageRef.child(file.name);
-      await fileRef.put(file);
+      const uploadTask = fileRef.put(file); // 파일 업로드 작업 시작
+      await uploadTask;
       console.log('File uploaded successfully!');
-      const url = await fileRef.getDownloadURL();
+      url = await fileRef.getDownloadURL();
       console.log("저장경로 확인 : " + url);
       
       setUrl(url);

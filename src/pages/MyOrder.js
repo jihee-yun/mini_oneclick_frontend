@@ -162,11 +162,11 @@ const MyOrder = () => {
   }
   
   // 수강일 이후 환불 불가
-  const isCancel = (created) => {
+  const isCancel = (start) => {
     const currentDate = new Date();
-    const createdDay = new Date(created);
-    console.log(currentDate > createdDay)
-    return currentDate > createdDay;
+    const startDate = new Date(start);
+    console.log(currentDate > startDate)
+    return currentDate > startDate;
   }
 
   return(
@@ -202,7 +202,7 @@ const MyOrder = () => {
             </td>
           <td>{payment.created}</td>
           <td>{payment.price.toLocaleString()}원({payment.amount}인)</td>
-          {isCancel(payment.created) ? 
+          {isCancel(payment.startDate) ? 
           (<td><button className="unable">취소불가</button></td>) 
           : <td><RefundClass paymentNum={payment.num} /></td>}
         </tr>
