@@ -156,6 +156,7 @@ const RightDivision = () => {
     const lectureList = async() => {
       const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
       if(rsp.status === 200) {
+        console.log(rsp.data.lectureList[0].name);
         const loadWishChk = await AxiosApi.getWishChk(lectureNum, memberNum);
         if(rsp.status === 200 && loadWishChk.status === 200) {
           setList(rsp.data.lectureList);
