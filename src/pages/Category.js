@@ -68,10 +68,11 @@ const SectionBox1 = styled.div`
   display: flex;
   flex-direction: column;
   width: 240px;
-  height: 310px;
+  height: 330px;
   margin: 25px;
   /* border: 1px solid lightgray; */
   z-index: 5;
+  border: 1px solid lightgray;
 `;
 
 const Thumbnail = styled.div`
@@ -126,13 +127,14 @@ const Description = styled.div`
   font-size: 0.6rem;
   font-weight: normal;
   display:flex;
-  height: 30px;
+  height: 34px;
   padding: 5px 5px;
   color: gray;
   /* border: 1px solid black; */
-  text-overflow: ellipsis;
+  text-overflow: hidden;
   overflow: hidden;
   margin-bottom: 5px;
+
 `;
 const PriceDate = styled.div`
   display: flex;
