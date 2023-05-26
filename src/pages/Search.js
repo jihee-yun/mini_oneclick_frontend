@@ -22,6 +22,7 @@ const Container = styled.div`
   font-weight: bold;
   font-size: 1.3em;
   gap: 25px;
+  margin: 80px 0px 80px 100px;
 `;
 
 const LectureBox = styled.div`
