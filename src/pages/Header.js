@@ -113,6 +113,7 @@ const NavBlock = styled.div`
     background-color: white;
     width: 310px;
     height: 100px;
+    cursor: pointer;
 
 
     li {
