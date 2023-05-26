@@ -72,6 +72,12 @@ const MyReviewSection1 = () => {
     setEndIndex(endIndex + 2);
   }
 
+  const deleteReview = async(reviewNum) => {
+    // 리뷰 삭제 기능 구현
+    const response = await AxiosApi.deleteReview(reviewNum);
+    console.log(response.data);
+  }
+
   return(
     <>
     <Head>
@@ -99,9 +105,12 @@ const MyReviewSection1 = () => {
         <p>{myReview.content} {/** 100자까지..? */}
         </p>
       </div>
+      <div className="reviewBtn">
       <Link to={`/MyReviewUpdate/${myReview.lnum}/${myReview.num}`} style={{ textDecoration: "none", color: "inherit"}}>
-      <button>수정하기</button>
+      <button className="update">수정</button>
       </Link>
+      <button className="delete" onClick={() => deleteReview(myReview.num)}>삭제</button>
+      </div>
     </div>
     )))}
     </SectionBox>

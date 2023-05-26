@@ -62,17 +62,35 @@ const Container = styled.div`
     border: .3px solid lightgray;
   }
   
-  button {
+  button.update {
     position: absolute;
     bottom: 10px;
-    right: 15px;
-    /* border: none; */
+    right: 70px;
     border: 1px solid lightgray;
     border-radius: 2px;
-    width: 15%;
+    width: 11%;
     background-color: white;
     color: darkgray;
     font-size: 0.7em;
+
+    &:hover {
+      background-color: lightgray;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  button.delete {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    width: 11%;
+    background-color: white;
+    color: darkgray;
+    font-size: 0.7em;
+
     &:hover {
       background-color: lightgray;
       color: white;
