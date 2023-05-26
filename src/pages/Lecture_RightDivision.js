@@ -161,7 +161,7 @@ const RightDivision = () => {
         if(rsp.status === 200 && loadWishChk.status === 200) {
           setList(rsp.data.lectureList);
           setWishChk(loadWishChk.data);
-          console.log(rsp.data.lectureList[0].name);
+          setLectureName(rsp.data.lectureList[0].name);
         }
       }
 
