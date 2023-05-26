@@ -6,10 +6,10 @@ import { UserContext } from "../context/UserStore";
 import Modal from "../utils/Modal";
 
 const Container = styled.div`
-  display: flex;
 `;
 
 const RePayBtn = styled.button`
+  
   margin-top: 20px;
   padding: 10px 20px;
   border: none;
@@ -23,6 +23,8 @@ const RePayBtn = styled.button`
     width: 100%;
   }
 `;
+
+
 
 const RefundClass = () => {
   const { paymentNum } = useContext(UserContext);
@@ -59,7 +61,7 @@ const RefundClass = () => {
 
   return (
     <Container>
-      <RePayBtn onClick={openModal}>환불하기</RePayBtn>
+      <RePayBtn className="btn" onClick={openModal}>환불하기</RePayBtn>
       <Modal
         open={showModal}
         close={closeModal}

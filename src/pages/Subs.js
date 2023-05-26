@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import AxiosApi from "../api/AxiosApi";
 import Payment from "./Payment";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -8,20 +7,15 @@ import Footer from "./Footer";
 
 
 const Container = styled.div`
+  margin: 50px 0 100px 0;
   background-color: #FEFDFD;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   padding: 20px;
   width: 100%;
-
-  /* 모바일 */
-  @media (max-width: 1024px) {
-    padding: 10px;
-    max-width: 100%;
-  }
 `;
 
 const Subscriptions = styled.div`

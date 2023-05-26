@@ -54,6 +54,15 @@ const Container = styled.div`
     pointer-events: none;
   }
 
+  /* td.able {
+    position: relative;
+    button {
+      position: absolute;
+      right: 63px;
+      bottom: 33px;
+    }
+  } */
+
   th, td {
     padding: 20px;
     border-top: 1px solid lightgray;
@@ -183,7 +192,7 @@ const MyOrder = () => {
        <tr>
         <th>상품정보</th>
         <th>결제일자</th>
-        <th>결제금액(인원)</th>
+        <th>결제금액</th>
         <th>결제취소</th>
        </tr>
       </thead>
@@ -201,10 +210,10 @@ const MyOrder = () => {
             </div>
             </td>
           <td>{payment.created}</td>
-          <td>{payment.price.toLocaleString()}원({payment.amount}인)</td>
+          <td>{payment.price.toLocaleString()}원</td>
           {isCancel(payment.startDate) ? 
           (<td><button className="unable">취소불가</button></td>) 
-          : <td><RefundClass paymentNum={payment.num} /></td>}
+          : <td className="able"><RefundClass paymentNum={payment.num} /></td>}
         </tr>
         )))}
       </tbody>
