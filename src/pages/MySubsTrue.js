@@ -125,6 +125,14 @@ const MySubsTrue = () => {
     const mySubsInfo = async() => {
       const response = await AxiosApi.mySubsGet(userId);
       if(response.status === 200) setSubsInfo(response.data);
+      const mySubInfo = await AxiosApi.mySubsGet(userId);
+      console.log(mySubInfo.data);
+      if(Array.isArray(mySubInfo.data) && mySubInfo.data.length > 0) {
+        const mySub = mySubInfo.data[0];
+        setPaySubNum(mySub.paySubNum);
+        console.log(mySub.paySubNum);
+      }
+      
     };
     mySubsInfo();
   },[userId]);

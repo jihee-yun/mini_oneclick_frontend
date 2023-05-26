@@ -44,7 +44,7 @@ const Refund = () => {
   
 
   const onClickPayBack = async() => {
-    console.log("환불 paymentNum : " + paySubNum);
+    console.log("환불 paySubNum: " + paySubNum);
     try {
       const response = await AxiosApi.payBack(paySubNum);
       const isRefund = response.data;

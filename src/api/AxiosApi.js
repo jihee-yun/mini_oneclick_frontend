@@ -273,7 +273,7 @@ const AxiosApi = {
     const payback = {
       paySubNum: paySubNum
     }
-    return await axios.post(KH_DOMAIN + "/payback", payback);
+    return await axios.post(KH_DOMAIN + "/payBack", payback);
   },
   // My Cart 상품 구매.
   paymentCartClass: async(lectureNum, memberNum, merchant_uid, amount) => {
