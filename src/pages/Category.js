@@ -171,6 +171,7 @@ const CategoryList = () => {
   const context = useContext(UserContext);
   const { setLectureNum, categoryNum, memberNum, info, setPrice} = context;
   const [sortNum, setSortNum] = useState(1);
+  const [sortList, setSortList] = useState("");
   const [wishInfo, setWishInfo] = useState("");
   const [wishChk, setWishChk] = useState(false);
 
@@ -188,18 +189,18 @@ const CategoryList = () => {
           const lecture = lecInfo.data[0];
           setLectureNum(lecture.lectureNum);
         };
-        const chk = await AxiosApi.myWishGet(memberNum);
-        if(chk.status === 200) {
-          setWishInfo(chk.data);
-          console.log(chk.data);
-        }
+        // const chk = await AxiosApi.myWishGet(memberNum);
+        // if(chk.status === 200) {
+        //   setWishInfo(chk.data);
+        //   console.log(chk.data);
+        // }
         console.log(sortList);
-        if(sortNum === 1) {
-          setList(sortList.sort((a, b) => a.likeCount - b.likeCount)); // 인기순으로 정렬
-        } else if (sortNum === 2) {
-          setList(sortList.sort((a, b) => a.endDate - b.endDate)); // 날짜 빠른 순으로 정렬
-        } else if (sortNum === 3) {
-          setList(sortList.sort((a, b) => b.price - a.price)); // 가격 높은 순으로 정렬
+        setSortList(sortList);
+        switch(sortNum) {
+          case 1 : return setList(sortList.sort((a, b) => a.likeCount - b.likeCount)); // 인기순으로 정렬
+          case 2 : return setList(sortList.sort((a, b) => a.endDate - b.endDate)); // 날짜 빠른 순으로 정렬
+          case 3 : return setList(sortList.sort((a, b) => b.price - a.price)); // 가격 높은 순으로 정렬
+          default : return console.log("정렬 실패");
         }
       }
       else console.log("loadLectureList 실행 실패");
@@ -255,7 +256,7 @@ const wishBtn = (listData) => {
       <SectionContain>
         <Section1>
         {list && list.map(listData => (
-          <div className="card" key={listData.num} onClick={() => {event(listData)}} >
+          <div className="card" key={listData.lectureNum} onClick={() => {event(listData)}} >
             <SectionBox1>
             <Link to="/class" style={{ textDecoration: "none", color: "inherit"}}>
                 <Thumbnail>
