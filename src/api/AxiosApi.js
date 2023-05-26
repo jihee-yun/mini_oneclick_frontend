@@ -208,8 +208,7 @@ const AxiosApi = {
 
   // 카테고리 별 강의 리스트 불러오기
   loadList: async(categoryNum) => {
-    if(categoryNum === 0) return await axios.get(KH_DOMAIN + `/category`);
-    else return await axios.get(KH_DOMAIN + `/category/details?categoryNum=${categoryNum}`);
+    return await axios.get(KH_DOMAIN + `/category/details?categoryNum=${categoryNum}`);
   },
 
   // 강의 상세 설명 페이지
