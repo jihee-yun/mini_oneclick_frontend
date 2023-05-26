@@ -145,7 +145,7 @@ const PaymentStyle = styled.div`
 
 const RightDivision = () => {
   const context = useContext(UserContext);
-  const {memberNum, lectureNum, categoryNum, info, price, setMemberNum} = context;
+  const {memberNum, lectureNum, categoryNum, info, price, setMemberNum, setLectureName} = context;
 
   const [list, setList] = useState([]);
   const [wishChk, setWishChk] = useState(false);
@@ -155,11 +155,15 @@ const RightDivision = () => {
     }
     const lectureList = async() => {
       const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
-      const loadWishChk = await AxiosApi.getWishChk(lectureNum, memberNum);
-      if(rsp.status === 200 && loadWishChk.status === 200) {
-        setList(rsp.data.lectureList);
-        setWishChk(loadWishChk.data);
+      if(rsp.status === 200) {
+        const loadWishChk = await AxiosApi.getWishChk(lectureNum, memberNum);
+        if(rsp.status === 200 && loadWishChk.status === 200) {
+          setList(rsp.data.lectureList);
+          setWishChk(loadWishChk.data);
+          console.log(rsp.data.lectureList[0].name);
+        }
       }
+
     }
     lectureList();
   }, [categoryNum, lectureNum, wishChk]);
