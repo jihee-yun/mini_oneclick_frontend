@@ -169,17 +169,18 @@ const MyCart = () => {
       console.log(cartPayInfo.data);
       if(Array.isArray(cartPayInfo.data) && cartPayInfo.data.length > 0) {
         const payCart = cartPayInfo.data[0];
-        setAmount(payCart.totalPrice);
+        setAmount(totalPrice);
         setLectureNum(payCart.lecNum);
         setLectureName(payCart.lecName);
-        console.log("총금액" + payCart.totalPrice);
-
+        
+        
         console.log(payCart);
       }
     };
     cartInfo();
   }, [userId]);
 
+  
   // 체크박스, 가격 계산
   const [checkItems, setCheckItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -198,6 +199,7 @@ const MyCart = () => {
     const isChecked = e.target.checked;
     setCheckItems(isChecked ? cartInfo.map(cart => cart.cartNum) : []);
   };
+  setAmount(totalPrice);
 
   // 개별 체크박스
   const singleCheck = (checked, id) => {

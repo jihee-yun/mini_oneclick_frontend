@@ -76,9 +76,11 @@ const CartPayment = () => {
           console.log(phone);
           console.log(mail);
           console.log(memberNum);
+          console.log(lectureName);
+          console.log(amount);
 
           try {
-            await AxiosApi.paymentCartClass(lectureNum, memberNum, amount ,response.merchant_uid); // 여기 추가
+            await AxiosApi.paymentCartClass(lectureNum, memberNum, amount , response.merchant_uid); // 여기 추가
             // 강의에서 가져온 가격만 들어가면됩니다!
             navigate("/PayComplite");
           } catch(e) {
