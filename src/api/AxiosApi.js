@@ -283,11 +283,10 @@ const AxiosApi = {
     return await axios.post(KH_DOMAIN + "/payBack", payback);
   },
   // My Cart 상품 구매.
-  paymentCartClass: async(lectureNum, memberNum, merchant_uid, amount) => {
+  paymentCartClass: async(lectureNum, memberNum, amount) => {
     const payCart = {
       lectureNum: lectureNum,
       memberNum: memberNum,
-      created: merchant_uid,
       amount: amount
     };
     return await axios.post(KH_DOMAIN + "/payCart", payCart);
