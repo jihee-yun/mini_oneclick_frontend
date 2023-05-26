@@ -152,7 +152,7 @@ const ReviewWrite = () => {
   const PostReview = async() => {
     console.log("postReview 메소드 실행");
     console.log("memberNum 값 : " + memberNum);
-
+    console.log("lectureNum 값" + LectureNum);
     // 로그인이 되어있지 않으면 알림 출력
     if(memberNum === "") alert("로그인을 해주세요");
     

@@ -90,6 +90,9 @@ const NavBlock = styled.div`
   .firstMenu {
     display: inline-block;
     padding: 30px;
+    :hover {
+      cursor: pointer;
+    }
   }
 
   .link_style {

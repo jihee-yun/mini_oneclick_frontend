@@ -268,7 +268,7 @@ const LeftDivision = () => {
     ))}
       <div className={`${DescSel === 3 ? `descSel` : `descDisabled`}`}>  {/* 후기 */}
         <Contain>
-          <ReviewWrite></ReviewWrite>
+          <ReviewWrite/>  
           <ReviewTitle>
             실제로 클래스를 진행한 수강생들의 생생한 후기 <span style={{color: "blue", fontWeight: "bold"}}>{review.length}개</span>가 있어요.
           </ReviewTitle>

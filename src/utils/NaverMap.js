@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
- //123
 const { naver } = window;
 const NaverMap = ({children}) => {
   // 주소 불러오기 전엔 Default 값으로 에버랜드 주소 불러옴
@@ -49,7 +48,7 @@ const NaverMap = ({children}) => {
       // * https://navermaps.github.io/maps.js/docs/naver.maps.Service.html#~GeocodeResponse 확인!!
 
       // 성공적으로 response 값을 가져오면 위도, 경도값을 바꾼다.
-      // console.log(response.v2);
+      console.log(response.v2);
 
       setXVal(response.v2.addresses[0].y);
       setYVal(response.v2.addresses[0].x);

@@ -11,8 +11,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const Contain = styled.div`
-  max-width: 1280px;
-  /* margin: 0 auto; */
+  max-width: 1200px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -22,6 +21,8 @@ const Sort = styled.div`
   list-style: none;
   display:flex;
   flex-direction:row;
+  padding: 0 100px;
+  margin: 5px 0;
   li {
     margin: 0 5px;
   }
@@ -35,6 +36,10 @@ const Sort = styled.div`
   }
 `;
 const SectionContain = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  /* align-items: center; */
+  width: 100%;
 
 `;
 const Section1 = styled.div`
@@ -47,13 +52,19 @@ const Section1 = styled.div`
   align-items: right;
   /* border: 1px solid black; */
   /* background-color: black; */
+  .card :visited {
+    color: inherit;
+  }
+  .card {
+    text-decoration:none;
+  }
 `;
 
 const SectionBox1 = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 250px;
   height: 400px;
   margin: 5px;
   border: 1px solid lightgray;
@@ -194,7 +205,7 @@ const event = (listData) => {
   setPrice(listData.price);
 }
 
-
+// 구현 X
 const wishBtn = (listData) => {
   if(memberNum === 0) {
     alert("로그인을 먼저 해주세요.");
@@ -229,7 +240,7 @@ const wishBtn = (listData) => {
     <>
     <Header/>
     <Contain>
-      <h2>{info[categoryNum]}</h2>
+      <h2 style={{padding:"0 110px"}}>{info[categoryNum]}</h2>
       <Sort>
         <li><div className={sortNum === 1 ? "activeSort" : "none"} onClick={()=>setSortNum(1)}>인기순</div></li>
         <li><div className={sortNum === 2 ? "activeSort" : "none"} onClick={()=>setSortNum(2)}>종료일순</div></li>
@@ -238,7 +249,7 @@ const wishBtn = (listData) => {
       <SectionContain>
         <Section1>
         {list && list.map(listData => (
-          <div className="card" key={listData.num} onClick={() => {event(listData)}} style={{textDecorationStyle: "none"}}>
+          <div className="card" key={listData.num} onClick={() => {event(listData)}} >
             <SectionBox1>
             <Link to="/class">
                 <Thumbnail>
