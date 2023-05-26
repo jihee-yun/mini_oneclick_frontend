@@ -25,7 +25,7 @@ const PayBtn = styled.button`
 
 
 const OrdinaryPayment = () => {
-    const { userName, phone, mail, memberNum, price , lectureNum} = useContext(UserContext);
+    const { userName, phone, mail, memberNum, price , lectureNum, lectureName } = useContext(UserContext);
 
     const navigate = useNavigate(); // 결제성공시 결제완료 페이지로
 
@@ -51,7 +51,7 @@ const OrdinaryPayment = () => {
             pay_method: "kakaopay",
             merchant_uid: `mid_${new Date().getTime()}`,
             amount: price, // 강의에서 떙겨온 가격 넣을예정
-            name: "OneClick 강의", // 강의에서 떙겨온 이름 넣을예정
+            name: lectureName, // 강의에서 떙겨온 이름 넣을예정
             buyer_name: userName,
             buyer_tel: phone,
             buyer_email: mail,
