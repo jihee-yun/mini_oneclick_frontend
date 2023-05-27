@@ -159,6 +159,7 @@ const MyReviewWrite = () => {
       url = await fileRef.getDownloadURL();
       console.log("저장경로 확인 : " + url);
       
+      
       setUrl(url);
       setAttachment("");
     }

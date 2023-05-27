@@ -46,6 +46,7 @@ const Heart = styled.div`
   position: absolute;
   top: 120px;
   right: 5px;
+  z-index: 1;
   img {
     width: 15px;
     height: 15px;
