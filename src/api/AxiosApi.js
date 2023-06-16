@@ -1,5 +1,5 @@
 import axios from "axios";
-import { async } from "q";
+
 const KH_DOMAIN = "http://localhost:8111";
 
 const AxiosApi = {
