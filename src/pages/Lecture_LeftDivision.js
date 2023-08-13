@@ -174,7 +174,7 @@ const ReviewTitle = styled.div`
 `
 
 
-const LeftDivision = () => {
+const LeftDivision = ({lectureList}) => {
   // 메뉴 선택 시 보여지는 정보를 변경하기 위한 함수
   const [menuSel, setMenuSel] = useState(1);
   const [DescSel, setDescSel] = useState(1);
@@ -183,38 +183,14 @@ const LeftDivision = () => {
     setDescSel(count);
   }
 
-  const [lectureList, setLectureList] = useState([]);
-  const context = useContext(UserContext);
-  const {lectureNum, categoryNum} = context;
-  useEffect(() => {
-    const LectureList = async() => {
-      // category 번호와 강의 번호 대입
-      console.log("카테고리:" + categoryNum + " " + "강의번호:" + lectureNum);
-      const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
-      if(rsp.status === 200) {
-        console.log("LectureList에서 받아옴 : " + rsp.data);
-        console.log("LectureList에서 받아옴 : " + rsp.data.lectureList);
-        setLectureList(rsp.data.lectureList);
-      }
-      else alert("강의 불러오기 실패");
-    }
-    LectureList();
-  }, [menuSel]);
-
-  console.log(lectureList);
-
   // reviewListNum 이 1이면 이전 후기 버튼 사라짐
   const [reviewListNum, setReviewListNum] = useState(1);
-
   const [review, setReview] = useState("");
   useEffect(()=> {
     const loadReviewList = async() => {
-      console.log("loadReviewList 메소드 실행");
       const rsp = await AxiosApi.viewList(1);
       if(rsp.status === 200) {
-        console.log(rsp.data);
         setReview(rsp.data);
-        console.log("viewList DB전송 성공");
       }
       else console.log("viewList DB전송 실패");
     }

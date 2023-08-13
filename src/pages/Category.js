@@ -169,7 +169,7 @@ const Heart = styled.div`
 const CategoryList = () => {
  // nav 메뉴에서 강의 카테고리 클릭시 context 로 값 끌어옴
   const context = useContext(UserContext);
-  const { setLectureNum, setCategoryNum, categoryNum, memberNum, info, setPrice} = context;
+  const { setLectureNum, setCategoryNum, categoryNum, memberNum, info, setPrice, lectureNum} = context;
   const [sortNum, setSortNum] = useState(1);
   const [sortList, setSortList] = useState("");
   const [wishInfo, setWishInfo] = useState("");
@@ -211,6 +211,8 @@ const event = (listData) => {
   setCategoryNum(listData.num);
   setLectureNum(listData.lectureNum);
   setPrice(listData.price);
+  console.log(categoryNum);
+  console.log(lectureNum);
 }
 
 // 구현 X

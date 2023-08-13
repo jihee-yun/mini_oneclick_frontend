@@ -52,23 +52,7 @@ const Asdf = styled.div`
     width: auto;
   }
 `
-const MainIMG = () => {
-  const context = useContext(UserContext);
-  const { categoryNum, lectureNum } = context;
-  const [img, setImg] = useState("");
-  
-  useEffect(() => {
-    const loadMainIMG = async() => {
-      const rsp = await AxiosApi.viewLecture(categoryNum, lectureNum);
-      if(rsp.status === 200) {
-        console.log("받아온 이미지리스트:" + rsp.data.imgList[0]);
-        setImg(rsp.data.imgList);
-        console.log(img);
-      }
-    }
-    loadMainIMG();
-  },[lectureNum]);
-
+const MainIMG = ({img}) => {
 
   return (
     <ClassImg >

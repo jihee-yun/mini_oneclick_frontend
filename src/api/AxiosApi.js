@@ -212,9 +212,9 @@ const AxiosApi = {
   },
 
   // 강의 상세 설명 페이지
-  viewLecture: async(category, lectureNum) => {
-    console.log("viewLecture axios 호출" + category + lectureNum);
-    return await axios.get(KH_DOMAIN + `/class?category=${category}&lectureNum=${lectureNum}`);
+  viewLecture: async(lectureNum) => {
+    console.log("viewLecture axios 호출" + lectureNum);
+    return await axios.get(KH_DOMAIN + `/class?lectureNum=${lectureNum}`);
   },
 
   // 리뷰 불러오기
