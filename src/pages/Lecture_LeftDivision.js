@@ -58,14 +58,13 @@ const Division1 = styled.div`
   }
 `
 
-const ClassDescTitle = styled.div`
+const ClassDescTitle = styled.h2`
   padding: 5px;
-  /* display: flex; */
+  display: flex;
   margin: 20px 0;
   justify-content: center;
   flex-wrap: nowrap;
   align-items: center;
-  font-size: 1rem;
 `;
 
 const Introduction = styled.div`
@@ -106,7 +105,6 @@ const ClassDetail = styled.div`
 `
 
 // 크리에이터 div 페이지
-
 const Contain = styled.div`
   width: 90%;
   margin: 10px auto;
@@ -200,48 +198,48 @@ const LeftDivision = ({lectureList}) => {
   return (
     <Division1>
       {lectureList && lectureList.map(Lecturelist => (
-      <div key={Lecturelist.num}>
-        <ClassMenu>
-          <div className="menu menu1">
-            <div className={`menutree ${menuSel === 1 ? `select` : 'disabled'}`} onClick={()=>{MenuIndex(1)}}>클래스 소개</div>
-            <div className={`menutree ${menuSel === 2 ? `select` : 'disabled'}`} onClick={()=>{MenuIndex(2)}}>크리에이터</div>
-            <div className={`menutree ${menuSel === 3 ? `select` : 'disabled'}`} onClick={()=>{MenuIndex(3)}}>후기</div>
-          </div>
-        </ClassMenu>
-        <div className={`${DescSel === 1 ? `descSel` : `descDisabled`}`}>
-        <Contain>
-          {/* 메뉴 버튼 시 z-index 변경 */}   
-          <ClassDescTitle>
-            {Lecturelist.intro}
-          </ClassDescTitle>
-          <Introduction> 
-            {/* <Slider></Slider> */}
-          </Introduction>
-          <ClassDetail>
-          <img src={Lecturelist.description} alt="" />
-          </ClassDetail>
-        </Contain>
-      </div>
-      <div className={`${DescSel === 2 ? `descSel` : `descDisabled`}`}> {/* 크리에이터 소개 */}
-        <Contain>
-          <ClassCreatorDesc>
-            <div>
-              크리에이터<br/>
-              <b>{Lecturelist.lecturer}</b> 입니다.
+        <div key={Lecturelist.num}>
+          <ClassMenu>
+            <div className="menu menu1">
+              <div className={`menutree ${menuSel === 1 ? `select` : 'disabled'}`} onClick={()=>{MenuIndex(1)}}>클래스 소개</div>
+              <div className={`menutree ${menuSel === 2 ? `select` : 'disabled'}`} onClick={()=>{MenuIndex(2)}}>크리에이터</div>
+              <div className={`menutree ${menuSel === 3 ? `select` : 'disabled'}`} onClick={()=>{MenuIndex(3)}}>후기</div>
             </div>
-            <img src={Lecturelist.lecturer_photo} alt="" />
-          </ClassCreatorDesc>
-          <ClassCreator>
-              <li><img src="https://class101.net/images/ic-youtube.png" alt="" />YouTube</li>
-              <li><img src="https://class101.net/images/ic-instagram.png" alt="" />Instagram</li>
-          </ClassCreator>
-          <CreatorIntro>
-              <img src={Lecturelist.lecturer_desc} alt="" />
-          </CreatorIntro>
-        </Contain>
-      </div>    
-      </div>
-    ))}
+          </ClassMenu>
+          <div className={`${DescSel === 1 ? `descSel` : `descDisabled`}`}>
+            <Contain>
+              {/* 메뉴 버튼 시 z-index 변경 */}   
+              <ClassDescTitle>
+                {Lecturelist.intro}
+              </ClassDescTitle>
+              <Introduction> 
+                {/* <Slider></Slider> */}
+              </Introduction>
+              <ClassDetail>
+              <img src={Lecturelist.description} alt="" />
+              </ClassDetail>
+            </Contain>
+          </div>
+          <div className={`${DescSel === 2 ? `descSel` : `descDisabled`}`}> {/* 크리에이터 소개 */}
+            <Contain>
+              <ClassCreatorDesc>
+                <div>
+                  크리에이터<br/>
+                  <b>{Lecturelist.lecturer}</b> 입니다.
+                </div>
+                <img src={Lecturelist.lecturer_photo} alt="" />
+              </ClassCreatorDesc>
+              <ClassCreator>
+                  <li><img src="https://class101.net/images/ic-youtube.png" alt="" />YouTube</li>
+                  <li><img src="https://class101.net/images/ic-instagram.png" alt="" />Instagram</li>
+              </ClassCreator>
+              <CreatorIntro>
+                  <img src={Lecturelist.lecturer_desc} alt="" />
+              </CreatorIntro>
+            </Contain>
+          </div>    
+        </div>
+      ))}
       <div className={`${DescSel === 3 ? `descSel` : `descDisabled`}`}>  {/* 후기 */}
         <Contain>
           <ReviewWrite/>  
