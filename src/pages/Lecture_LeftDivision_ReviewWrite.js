@@ -22,8 +22,8 @@ const ReviewPhoto = styled.div`
   justify-content:center;
   width: 41.5%;
   img {
-    width: 100%;
-    height: 100%;
+    width: 500px;
+    height: 300px;
     object-fit: fill;
     overflow:hidden;
   }
@@ -150,12 +150,8 @@ const ReviewWrite = () => {
 
   // 리뷰 작성하기 버튼 이벤트
   const PostReview = async() => {
-    console.log("postReview 메소드 실행");
-    console.log("memberNum 값 : " + memberNum);
-    console.log("lectureNum 값" + LectureNum);
     // 로그인이 되어있지 않으면 알림 출력
     if(memberNum === "") alert("로그인을 해주세요");
-    
     // 나중에 num 값 삭제하고 java에서 sql문에 nextval로 바꾸기
     const reviewWrite = await AxiosApi.reviewWrite(LectureNum, memberNum, title, desc, url);
     if(reviewWrite.data === true) {

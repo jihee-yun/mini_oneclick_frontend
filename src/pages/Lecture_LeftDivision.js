@@ -172,7 +172,7 @@ const ReviewTitle = styled.div`
 `
 
 
-const LeftDivision = ({lectureList}) => {
+const LeftDivision = ({lectureList, lectureNum, memberNum}) => {
   // 메뉴 선택 시 보여지는 정보를 변경하기 위한 함수
   const [menuSel, setMenuSel] = useState(1);
   const [DescSel, setDescSel] = useState(1);
@@ -186,8 +186,9 @@ const LeftDivision = ({lectureList}) => {
   const [review, setReview] = useState("");
   useEffect(()=> {
     const loadReviewList = async() => {
-      const rsp = await AxiosApi.viewList(1);
+      const rsp = await AxiosApi.viewList(lectureNum);
       if(rsp.status === 200) {
+        console.log(rsp);
         setReview(rsp.data);
       }
       else console.log("viewList DB전송 실패");
@@ -247,15 +248,14 @@ const LeftDivision = ({lectureList}) => {
             실제로 클래스를 진행한 수강생들의 생생한 후기 <span style={{color: "blue", fontWeight: "bold"}}>{review.length}개</span>가 있어요.
           </ReviewTitle>
           {review && review.map(reviewData => (
-          <div className="reviewlist" key={review.id}>
-            <ReviewList member={reviewData.memberNum} title={reviewData.title} content={reviewData.content} img={reviewData.img}></ReviewList> 
-          </div>
+            <div className="reviewlist" key={review.id}>
+              <ReviewList reviewNum={review.id} member={reviewData.memberNum} title={reviewData.title} content={reviewData.content} img={reviewData.img}></ReviewList> 
+            </div>
           ))}
-          <div className="btnStyle">
+          {/* <div className="btnStyle">
             <button className={reviewListNum !== 1? "activeBtnStyle" : "noBtnStyle"}>이전 후기 보기</button>
             <button >다음 후기 보기</button>
-          </div>
-          
+          </div> */}
         </Contain>
       </div>
 

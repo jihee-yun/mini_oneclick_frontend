@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { UserContext } from "../context/UserStore";
 import account from "../images/account.png"
 import { getStorage, ref, uploadBytes, storage, getDownloadURL } from "firebase/storage";
+import AxiosApi from "../api/AxiosApi";
+import ModalReviewDel from "../utils/ModalReviewDel";
 
 const Container = styled.div`
   width: 100%;
@@ -82,21 +84,37 @@ const Container = styled.div`
     justify-content: right;
     align-items: center;
   }
+
   .noBtnStyle {
     display:none;
   }
 `
 // 부모 컴포넌트는 Lecture_LeftDivision_ReviewWrite
-const ReviewList = ({member, title, content, img}) => {
-
+const ReviewList = ({reviewNum, member, title, content, img}) => {
   // 리뷰 한 개씩 불러올 때 사진을 올리지 않았으면 Default 사진으로 불러오게 하기
   // + firebase 사용해서 불러오기
   if(img === null) img = account;
 
   // context에서 사용자 PK 불러오기
-  const context = (useContext(UserContext));
+  const context = useContext(UserContext);
   const {memberNum} = context;
-  
+  const [modalOpen, setModalOpen] = useState(false);
+  const [deleteChk, setDeleteChk] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+  const checkDelete = () => {
+    if(deleteChk) deleteReview();
+  }
+  const deleteReview = async() => {
+    const response = await AxiosApi.deleteReview(reviewNum);
+    if(response.status === 200) {
+      alert("리뷰가 삭제됐습니다.");
+    }
+  }
   return (
     <Container>
       <div className="reviewbox">
@@ -111,8 +129,15 @@ const ReviewList = ({member, title, content, img}) => {
         {/* 자신이 쓴 후기만 삭제, 수정 버튼이 뜨도록 */}
         <div className={member === memberNum ? ".activeBtnStyle" : "noBtnStyle"}>
           <button>수정하기</button>
-          <button>삭제하기</button>
+          <button onClick={openModal}>삭제하기</button>
         </div>
+        {/* 삭제 확인 모달 */}
+        {modalOpen ?
+          <ModalReviewDel open={modalOpen} setDeleteChk={setDeleteChk} close={closeModal} >
+            <div>삭제하시겠습니까?</div>
+          </ModalReviewDel> 
+          : null
+        }
     </div>
   </Container>
   )

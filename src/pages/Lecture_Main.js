@@ -36,7 +36,7 @@ const Lecture = () => {
   const [lectureList, setLectureList] = useState([]);
   const [img, setImg] = useState("");
   const context = useContext(UserContext);
-  const {lectureNum} = context;
+  const {lectureNum, memberNum} = context;
 
   useEffect(() => {
     const LectureList = async() => {
@@ -57,8 +57,8 @@ const Lecture = () => {
     <BodyContainer>
       <MainIMG img={img}/>
       <Classlist>
-        <LeftDivision lectureList={lectureList}/>
-        <RightDivision lectureList={lectureList}/>
+        <LeftDivision lectureList={lectureList} lectureNum={lectureNum} memberNum={memberNum}/>
+        <RightDivision lectureList={lectureList} />
       </Classlist>
     </BodyContainer>
     <Footer />
