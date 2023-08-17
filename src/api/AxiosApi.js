@@ -140,6 +140,9 @@ const AxiosApi = {
     }
     return await axios.post(KH_DOMAIN + "/delReview", del);
   },
+  deleteMyReview: async(num) => {
+    return await axios.post(KH_DOMAIN + "/class/delReview", num);
+  },
   // 이미지 업로드(강의 썸네일 업데이트)
   updateImg: async(url) => {
     const update = {
@@ -224,9 +227,8 @@ const AxiosApi = {
   },
 
   // 리뷰 작성
-  reviewWrite: async(num, lecNum, memNum, title, content, img) => {
+  reviewWrite: async(lecNum, memNum, title, content, img) => {
     const reviewData = {
-      num : num,
       lecNum : lecNum,
       memNum : memNum,
       title : title,

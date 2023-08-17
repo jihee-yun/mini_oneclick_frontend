@@ -89,7 +89,7 @@ const ModalStyle = styled.div`
 `;
 
 const ModalReviewDel = (props) => {
-    const {open, close, children, setDeleteChk} = props;
+    const {open, close, setDeleteChk} = props;
 
     // &times; 는 X표 문자를 의미
     return (
@@ -102,9 +102,11 @@ const ModalReviewDel = (props) => {
                                 &times;  
                             </button>
                         </header>
-                        <main>{children}</main>
+                        <main>
+                           삭제하시겠습니까?
+                        </main>
                         <footer>
-                            <button onClick={setDeleteChk(true)}>삭제</button>
+                            <button onClick={()=>setDeleteChk(true)}>삭제</button>
                             <button onClick={close}>취소</button>
                         </footer>
                     </section>

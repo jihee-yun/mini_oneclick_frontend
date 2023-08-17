@@ -5,6 +5,7 @@ import Modal from "../utils/ModalIMG"
 import AxiosApi from "../api/AxiosApi";
 import { UserContext } from "../context/UserStore";
 import { storage } from '../api/firebase';
+import account from '../images/account.png'
 
 
 const Container = styled.div`
@@ -146,14 +147,18 @@ const ReviewWrite = () => {
   const onChangeDesc = (e) => { setDesc(e.target.value); }
   
   const context = useContext(UserContext);
-  const {memberNum, LectureNum} = context;
+  const {memberNum, lectureNum} = context;
 
   // 리뷰 작성하기 버튼 이벤트
   const PostReview = async() => {
     // 로그인이 되어있지 않으면 알림 출력
     if(memberNum === "") alert("로그인을 해주세요");
     // 나중에 num 값 삭제하고 java에서 sql문에 nextval로 바꾸기
-    const reviewWrite = await AxiosApi.reviewWrite(LectureNum, memberNum, title, desc, url);
+    if(url === '') {
+      setUrl('https://firebasestorage.googleapis.com/v0/b/oneclick-31ff8.appspot.com/o/account.png?alt=media&token=a7c178e5-242b-4373-b4ba-4b0e5b72862f');
+    }
+    console.log(lectureNum, memberNum, title, desc, url);
+    const reviewWrite = await AxiosApi.reviewWrite(lectureNum, memberNum, title, desc, url);
     if(reviewWrite.data === true) {
       alert("리뷰 작성 완료!");
       // URL.create 는 garbage collect 를 자동 실행하지 않기 떄문에 

@@ -106,15 +106,19 @@ const ReviewList = ({reviewNum, member, title, content, img}) => {
   const closeModal = () => {
     setModalOpen(false);
   };
-  const checkDelete = () => {
-    if(deleteChk) deleteReview();
-  }
   const deleteReview = async() => {
-    const response = await AxiosApi.deleteReview(reviewNum);
+    console.log("deleteReview 실행" + reviewNum);
+    const response = await AxiosApi.deleteMyReview(parseInt(reviewNum));
     if(response.status === 200) {
       alert("리뷰가 삭제됐습니다.");
+      closeModal();
     }
   }
+  useEffect(() => {
+    if(deleteChk) {
+      deleteReview(reviewNum);
+    }
+  },[deleteChk])
   return (
     <Container>
       <div className="reviewbox">
@@ -133,9 +137,7 @@ const ReviewList = ({reviewNum, member, title, content, img}) => {
         </div>
         {/* 삭제 확인 모달 */}
         {modalOpen ?
-          <ModalReviewDel open={modalOpen} setDeleteChk={setDeleteChk} close={closeModal} >
-            <div>삭제하시겠습니까?</div>
-          </ModalReviewDel> 
+          <ModalReviewDel open={modalOpen} setDeleteChk={setDeleteChk} close={closeModal} />
           : null
         }
     </div>

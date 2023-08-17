@@ -188,7 +188,7 @@ const LeftDivision = ({lectureList, lectureNum, memberNum}) => {
     const loadReviewList = async() => {
       const rsp = await AxiosApi.viewList(lectureNum);
       if(rsp.status === 200) {
-        console.log(rsp);
+        console.log(rsp.data);
         setReview(rsp.data);
       }
       else console.log("viewList DB전송 실패");
@@ -249,7 +249,7 @@ const LeftDivision = ({lectureList, lectureNum, memberNum}) => {
           </ReviewTitle>
           {review && review.map(reviewData => (
             <div className="reviewlist" key={review.id}>
-              <ReviewList reviewNum={review.id} member={reviewData.memberNum} title={reviewData.title} content={reviewData.content} img={reviewData.img}></ReviewList> 
+              <ReviewList reviewNum={reviewData.reviewNum} member={reviewData.memberNum} title={reviewData.title} content={reviewData.content} img={reviewData.img}></ReviewList> 
             </div>
           ))}
           {/* <div className="btnStyle">
